@@ -1,0 +1,50 @@
+@page "/settings/cygnet"
+@using MudBlazor
+
+<PageTitle>Cygnet Global E-Invoicing Configuration</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Medium" Class="mt-4 mb-8">
+    <MudCard Elevation="1">
+        <MudCardHeader>
+            <CardHeaderAvatar>
+                <MudAvatar Color="Color.Primary">
+                    <i class="fa-solid fa-cloud"></i>
+                </MudAvatar>
+            </CardHeaderAvatar>
+            <CardHeaderContent>
+                <MudText Typo="Typo.h6">Cygnet Global E-Invoicing API Configuration</MudText>
+                <MudText Typo="Typo.caption" Class="text-muted">Kingdom of Bahrain Staging Integration</MudText>
+            </CardHeaderContent>
+        </MudCardHeader>
+        <MudCardContent>
+            <MudSwitch @bind-Value="_isSandbox" Color="Color.Success" Label="Sandbox Simulation Mode (Recommended for testing)" />
+
+            <MudDivider Class="my-3" />
+
+            <MudTextField @bind-Value="_authUrl" Label="Authentication API Endpoint" Variant="Variant.Outlined" Margin="Margin.Dense" Class="mb-3" />
+            <MudTextField @bind-Value="_saveUrl" Label="Documents Save API Endpoint" Variant="Variant.Outlined" Margin="Margin.Dense" Class="mb-3" />
+            
+            <MudGrid>
+                <MudItem xs="12" sm="6">
+                    <MudTextField @bind-Value="_clientId" Label="Client ID (Header)" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                </MudItem>
+                <MudItem xs="12" sm="6">
+                    <MudTextField @bind-Value="_clientSecret" Label="Client Secret (Header)" InputType="InputType.Password" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                </MudItem>
+                <MudItem xs="12" sm="6">
+                    <MudTextField @bind-Value="_username" Label="Username" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                </MudItem>
+                <MudItem xs="12" sm="6">
+                    <MudTextField @bind-Value="_password" Label="Password" InputType="InputType.Password" Variant="Variant.Outlined" Margin="Margin.Dense" />
+                </MudItem>
+            </MudGrid>
+
+            <MudTextField @bind-Value="_callbackUrl" Label="Callback URL" Variant="Variant.Outlined" Margin="Margin.Dense" Class="mt-3" />
+        </MudCardContent>
+        <MudCardActions Class="pa-4">
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="SaveConfig">
+                Save Settings
+            </MudButton>
+        </MudCardActions>
+    </MudCard>
+</MudContainer>

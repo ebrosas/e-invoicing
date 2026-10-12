@@ -1,0 +1,17 @@
+/app/applet/EInvoicing.Infrastructure/bin/Debug/net8.0/EInvoicing.Infrastructure.deps.json
+/app/applet/EInvoicing.Infrastructure/bin/Debug/net8.0/EInvoicing.Infrastructure.dll
+/app/applet/EInvoicing.Infrastructure/bin/Debug/net8.0/EInvoicing.Infrastructure.pdb
+/app/applet/EInvoicing.Infrastructure/bin/Debug/net8.0/EInvoicing.Application.dll
+/app/applet/EInvoicing.Infrastructure/bin/Debug/net8.0/EInvoicing.Domain.dll
+/app/applet/EInvoicing.Infrastructure/bin/Debug/net8.0/EInvoicing.Domain.pdb
+/app/applet/EInvoicing.Infrastructure/bin/Debug/net8.0/EInvoicing.Application.pdb
+/app/applet/EInvoicing.Infrastructure/obj/Debug/net8.0/EInvoicing.Infrastructure.csproj.AssemblyReference.cache
+/app/applet/EInvoicing.Infrastructure/obj/Debug/net8.0/EInvoicing.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/app/applet/EInvoicing.Infrastructure/obj/Debug/net8.0/EInvoicing.Infrastructure.AssemblyInfoInputs.cache
+/app/applet/EInvoicing.Infrastructure/obj/Debug/net8.0/EInvoicing.Infrastructure.AssemblyInfo.cs
+/app/applet/EInvoicing.Infrastructure/obj/Debug/net8.0/EInvoicing.Infrastructure.csproj.CoreCompileInputs.cache
+/app/applet/EInvoicing.Infrastructure/obj/Debug/net8.0/EInvoici.3CCE2735.Up2Date
+/app/applet/EInvoicing.Infrastructure/obj/Debug/net8.0/EInvoicing.Infrastructure.dll
+/app/applet/EInvoicing.Infrastructure/obj/Debug/net8.0/refint/EInvoicing.Infrastructure.dll
+/app/applet/EInvoicing.Infrastructure/obj/Debug/net8.0/EInvoicing.Infrastructure.pdb
+/app/applet/EInvoicing.Infrastructure/obj/Debug/net8.0/ref/EInvoicing.Infrastructure.dll

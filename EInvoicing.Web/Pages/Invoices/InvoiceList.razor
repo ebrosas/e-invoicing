@@ -1,0 +1,50 @@
+@page "/invoices"
+@using EInvoicing.Application.DTOs
+@using MudBlazor
+
+<PageTitle>All JDE ERP Invoices - secuser.Vw_SalesInvoiceDetail</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="mt-2 mb-8">
+    <MudPaper Class="pa-4 mb-4" Elevation="1">
+        <div class="d-flex justify-space-between align-center">
+            <div>
+                <MudText Typo="Typo.h5" Class="font-weight-bold">
+                    <i class="fa-solid fa-database text-primary mr-2"></i> JDE ERP Sales Invoices
+                </MudText>
+                <MudText Typo="Typo.body2" Class="text-muted">
+                    Sourced from database view <code>secuser.Vw_SalesInvoiceDetail</code>
+                </MudText>
+            </div>
+            <MudButton Variant="Variant.Outlined" Color="Color.Primary" StartIcon="@Icons.Material.Filled.Refresh" OnClick="LoadInvoicesAsync">
+                Refresh View
+            </MudButton>
+        </div>
+    </MudPaper>
+
+    <MudTable Items="@_invoices" Loading="@_isLoading" Dense="true" Hover="true" Striped="true" Elevation="1">
+        <HeaderContent>
+            <MudTh>Invoice No.</MudTh>
+            <MudTh>Invoice Date</MudTh>
+            <MudTh>Delivery Order No.</MudTh>
+            <MudTh>Customer Name</MudTh>
+            <MudTh>Payment Terms</MudTh>
+            <MudTh Class="text-right">Total Net (BHD)</MudTh>
+            <MudTh Class="text-right">Total Amount (BHD)</MudTh>
+            <MudTh Class="text-center">Action</MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Invoice No" Class="font-weight-bold text-primary font-mono">@context.InvoiceNo</MudTd>
+            <MudTd DataLabel="Invoice Date">@context.InvoiceDate.ToString("yyyy-MM-dd")</MudTd>
+            <MudTd DataLabel="DO No">@context.DeliveryOrderNo</MudTd>
+            <MudTd DataLabel="Customer">@context.CustomerName</MudTd>
+            <MudTd DataLabel="Payment Terms">@context.PaymentTerms</MudTd>
+            <MudTd DataLabel="Total Net (BHD)" Class="text-right font-mono">@context.TotalLineNetAmountBHD.ToString("N3")</MudTd>
+            <MudTd DataLabel="Total Amount (BHD)" Class="text-right font-mono font-weight-bold text-success">@context.TotalInvoiceAmountBHD.ToString("N3")</MudTd>
+            <MudTd DataLabel="Action" Class="text-center">
+                <MudButton Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small" OnClick="@(() => OpenInvoice(context.InvoiceNo))">
+                    Open in Landing Page
+                </MudButton>
+            </MudTd>
+        </RowTemplate>
+    </MudTable>
+</MudContainer>

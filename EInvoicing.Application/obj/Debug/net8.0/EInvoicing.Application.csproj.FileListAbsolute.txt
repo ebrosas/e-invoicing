@@ -1,0 +1,15 @@
+/app/applet/EInvoicing.Application/bin/Debug/net8.0/EInvoicing.Application.deps.json
+/app/applet/EInvoicing.Application/bin/Debug/net8.0/EInvoicing.Application.dll
+/app/applet/EInvoicing.Application/bin/Debug/net8.0/EInvoicing.Application.pdb
+/app/applet/EInvoicing.Application/bin/Debug/net8.0/EInvoicing.Domain.dll
+/app/applet/EInvoicing.Application/bin/Debug/net8.0/EInvoicing.Domain.pdb
+/app/applet/EInvoicing.Application/obj/Debug/net8.0/EInvoicing.Application.csproj.AssemblyReference.cache
+/app/applet/EInvoicing.Application/obj/Debug/net8.0/EInvoicing.Application.GeneratedMSBuildEditorConfig.editorconfig
+/app/applet/EInvoicing.Application/obj/Debug/net8.0/EInvoicing.Application.AssemblyInfoInputs.cache
+/app/applet/EInvoicing.Application/obj/Debug/net8.0/EInvoicing.Application.AssemblyInfo.cs
+/app/applet/EInvoicing.Application/obj/Debug/net8.0/EInvoicing.Application.csproj.CoreCompileInputs.cache
+/app/applet/EInvoicing.Application/obj/Debug/net8.0/EInvoici.D8F37966.Up2Date
+/app/applet/EInvoicing.Application/obj/Debug/net8.0/EInvoicing.Application.dll
+/app/applet/EInvoicing.Application/obj/Debug/net8.0/refint/EInvoicing.Application.dll
+/app/applet/EInvoicing.Application/obj/Debug/net8.0/EInvoicing.Application.pdb
+/app/applet/EInvoicing.Application/obj/Debug/net8.0/ref/EInvoicing.Application.dll

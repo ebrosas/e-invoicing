@@ -1,0 +1,6 @@
+{
+  "summary":  "Architecture and implementation plan for the Clean Architecture Blazor Server E-Invoicing System integrating JDE ERP sales invoice view secuser.Vw_SalesInvoiceDetail and Cygnet Global E-Invoicing APIs.",
+  "updatedAt":  "2026-10-12T09:27:21.230109163Z",
+  "requestFeedback":  true,
+  "userFacing":  true
+}

@@ -1,0 +1,11 @@
+/app/applet/EInvoicing.Domain/bin/Debug/net8.0/EInvoicing.Domain.deps.json
+/app/applet/EInvoicing.Domain/bin/Debug/net8.0/EInvoicing.Domain.dll
+/app/applet/EInvoicing.Domain/bin/Debug/net8.0/EInvoicing.Domain.pdb
+/app/applet/EInvoicing.Domain/obj/Debug/net8.0/EInvoicing.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/app/applet/EInvoicing.Domain/obj/Debug/net8.0/EInvoicing.Domain.AssemblyInfoInputs.cache
+/app/applet/EInvoicing.Domain/obj/Debug/net8.0/EInvoicing.Domain.AssemblyInfo.cs
+/app/applet/EInvoicing.Domain/obj/Debug/net8.0/EInvoicing.Domain.csproj.CoreCompileInputs.cache
+/app/applet/EInvoicing.Domain/obj/Debug/net8.0/EInvoicing.Domain.dll
+/app/applet/EInvoicing.Domain/obj/Debug/net8.0/refint/EInvoicing.Domain.dll
+/app/applet/EInvoicing.Domain/obj/Debug/net8.0/EInvoicing.Domain.pdb
+/app/applet/EInvoicing.Domain/obj/Debug/net8.0/ref/EInvoicing.Domain.dll

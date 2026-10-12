@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "wo55yNj7lr0=",
+  "success": true,
+  "projectFilePath": "/app/applet/EInvoicing.Application/EInvoicing.Application.csproj",
+  "expectedPackageFiles": [
+    "/root/.nuget/packages/system.text.json/8.0.5/system.text.json.8.0.5.nupkg.sha512"
+  ],
+  "logs": []
+}

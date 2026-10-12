@@ -1,0 +1,320 @@
+@page "/"
+@page "/invoice"
+@using EInvoicing.Application.DTOs
+@using MudBlazor
+
+<PageTitle>E-Invoicing Details - JDE ERP Integration</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="mt-2 mb-8">
+    <!-- Top Action Bar & Search Card -->
+    <MudPaper Class="pa-4 mb-4" Elevation="1">
+        <MudGrid Class="align-center">
+            <!-- Search Input and Search Button Beside It -->
+            <MudItem xs="12" sm="6" md="5" lg="4">
+                <div class="d-flex align-center gap-2">
+                    <MudTextField @ref="_invoiceNumberInput"
+                                  @bind-Value="_searchInvoiceNo"
+                                  Label="Invoice Number"
+                                  Variant="Variant.Outlined"
+                                  Margin="Margin.Dense"
+                                  Placeholder="Enter or scan Invoice No. (e.g. DOC-INV-04)"
+                                  Adornment="Adornment.Start"
+                                  AdornmentIcon="@Icons.Material.Filled.Receipt"
+                                  OnKeyDown="@HandleKeyDown"
+                                  FullWidth="true" />
+
+                    <!-- Search Button placed beside Invoice No. -->
+                    <MudButton Variant="Variant.Filled"
+                               Color="Color.Primary"
+                               Size="Size.Medium"
+                               StartIcon="@Icons.Material.Filled.Search"
+                               OnClick="SearchInvoiceAsync"
+                               Disabled="_isLoading"
+                               Class="px-4 py-2 text-nowrap">
+                        Search
+                    </MudButton>
+                </div>
+            </MudItem>
+
+            <!-- Reset Button & Action Buttons -->
+            <MudItem xs="12" sm="6" md="7" lg="8" Class="d-flex justify-sm-end align-center gap-2">
+                <!-- Reset Button -->
+                <MudButton Variant="Variant.Outlined"
+                           Color="Color.Secondary"
+                           Size="Size.Medium"
+                           StartIcon="@Icons.Material.Filled.Refresh"
+                           OnClick="ResetFormAsync"
+                           Disabled="_isLoading">
+                    Reset
+                </MudButton>
+
+                <!-- Process Invoice Button -->
+                <MudButton Variant="Variant.Filled"
+                           Color="Color.Success"
+                           Size="Size.Medium"
+                           StartIcon="@Icons.Material.Filled.CloudUpload"
+                           OnClick="ProcessInvoiceAsync"
+                           Disabled="@(_isLoading || _invoice == null)">
+                    @if (_isProcessing)
+                    {
+                        <MudProgressCircular Size="Size.Small" Indeterminate="true" Class="mr-2" />
+                        <span>Processing with Cygnet...</span>
+                    }
+                    else
+                    {
+                        <span>Process Invoice</span>
+                    }
+                </MudButton>
+            </MudItem>
+        </MudGrid>
+
+        <!-- Staging & Token Status Banner -->
+        @if (!string.IsNullOrEmpty(_tokenStatusSummary))
+        {
+            <div class="mt-3 d-flex align-center gap-4 text-muted small">
+                <span><i class="fa-solid fa-key text-warning mr-1"></i> <strong>Cygnet Token:</strong> @_tokenStatusSummary</span>
+                <span><i class="fa-solid fa-server text-info mr-1"></i> <strong>DB View:</strong> secuser.Vw_SalesInvoiceDetail</span>
+                @if (_lastResult != null && _lastResult.Success)
+                {
+                    <span class="text-success"><i class="fa-solid fa-circle-check mr-1"></i> <strong>Cygnet Reference:</strong> @_lastResult.ReferenceId</span>
+                }
+            </div>
+        }
+    </MudPaper>
+
+    <!-- Loading State -->
+    @if (_isLoading)
+    {
+        <MudPaper Class="pa-8 d-flex flex-column align-center justify-center my-4" Elevation="0">
+            <MudProgressCircular Color="Color.Primary" Size="Size.Large" Indeterminate="true" />
+            <MudText Typo="Typo.body1" Class="mt-3 text-muted">Querying database view secuser.Vw_SalesInvoiceDetail...</MudText>
+        </MudPaper>
+    }
+    else if (_invoice == null)
+    {
+        <!-- Empty State -->
+        <MudPaper Class="pa-8 text-center my-4 border-dashed" Elevation="0">
+            <MudIcon Icon="@Icons.Material.Filled.SearchOff" Size="Size.Large" Color="Color.Secondary" Class="mb-2" />
+            <MudText Typo="Typo.h6">No Invoice Loaded</MudText>
+            <MudText Typo="Typo.body2" Class="text-muted mb-4">
+                Please enter a valid Invoice Number above or pass the query string parameter <code>?invoiceNo={InvoiceNo}</code> from JDE ERP.
+            </MudText>
+            <div class="d-flex justify-center gap-2">
+                @foreach (var sample in _sampleInvoices)
+                {
+                    <MudChip T="string" Variant="Variant.Outlined" Color="Color.Primary" OnClick="@(() => LoadSampleInvoiceAsync(sample))">
+                        Load @sample
+                    </MudChip>
+                }
+            </div>
+        </MudPaper>
+    }
+    else
+    {
+        <!-- INVOICE HEADER INFORMATION -->
+        <MudGrid Class="mb-4">
+            <!-- Header Summary Card -->
+            <MudItem xs="12" md="6">
+                <MudCard Elevation="1" Class="h-100">
+                    <MudCardHeader>
+                        <CardHeaderAvatar>
+                            <MudAvatar Color="Color.Primary" Variant="Variant.Filled">
+                                <i class="fa-solid fa-receipt"></i>
+                            </MudAvatar>
+                        </CardHeaderAvatar>
+                        <CardHeaderContent>
+                            <MudText Typo="Typo.h6">Invoice Header</MudText>
+                            <MudText Typo="Typo.caption" Class="text-muted">Originating from JDE ERP</MudText>
+                        </CardHeaderContent>
+                    </MudCardHeader>
+                    <MudCardContent Class="pt-0">
+                        <MudGrid Spacing="1">
+                            <MudItem xs="6">
+                                <MudText Typo="Typo.caption" Class="text-muted d-block">Invoice No.</MudText>
+                                <MudText Typo="Typo.body1" Class="font-weight-bold text-primary">@_invoice.InvoiceNo</MudText>
+                            </MudItem>
+                            <MudItem xs="6">
+                                <MudText Typo="Typo.caption" Class="text-muted d-block">Invoice Date</MudText>
+                                <MudText Typo="Typo.body2">@_invoice.InvoiceDate.ToString("yyyy-MM-dd HH:mm:ss")</MudText>
+                            </MudItem>
+
+                            <MudItem xs="6" Class="mt-2">
+                                <MudText Typo="Typo.caption" Class="text-muted d-block">Delivery Order No.</MudText>
+                                <MudText Typo="Typo.body2" Class="font-weight-bold">@_invoice.DeliveryOrderNo</MudText>
+                            </MudItem>
+                            <MudItem xs="6" Class="mt-2">
+                                <MudText Typo="Typo.caption" Class="text-muted d-block">Delivery Order Date</MudText>
+                                <MudText Typo="Typo.body2">@_invoice.DeliveryOrderDate.ToString("yyyy-MM-dd HH:mm:ss")</MudText>
+                            </MudItem>
+
+                            <MudItem xs="6" Class="mt-2">
+                                <MudText Typo="Typo.caption" Class="text-muted d-block">Payment Terms</MudText>
+                                <MudText Typo="Typo.body2">@_invoice.PaymentTerms</MudText>
+                            </MudItem>
+                            <MudItem xs="6" Class="mt-2">
+                                <MudText Typo="Typo.caption" Class="text-muted d-block">Net Due Date</MudText>
+                                <MudText Typo="Typo.body2" Class="font-weight-bold text-danger">@_invoice.NetDueDate.ToString("yyyy-MM-dd")</MudText>
+                            </MudItem>
+                        </MudGrid>
+                    </MudCardContent>
+                </MudCard>
+            </MudItem>
+
+            <!-- Sold To Information Card -->
+            <MudItem xs="12" md="6">
+                <MudCard Elevation="1" Class="h-100">
+                    <MudCardHeader>
+                        <CardHeaderAvatar>
+                            <MudAvatar Color="Color.Secondary" Variant="Variant.Filled">
+                                <i class="fa-solid fa-building-user"></i>
+                            </MudAvatar>
+                        </CardHeaderAvatar>
+                        <CardHeaderContent>
+                            <MudText Typo="Typo.h6">Sold To Details</MudText>
+                            <MudText Typo="Typo.caption" Class="text-muted">Buyer Party Entity</MudText>
+                        </CardHeaderContent>
+                    </MudCardHeader>
+                    <MudCardContent Class="pt-0">
+                        <MudGrid Spacing="1">
+                            <MudItem xs="12">
+                                <MudText Typo="Typo.caption" Class="text-muted d-block">Customer Name & Customer No.</MudText>
+                                <MudText Typo="Typo.body1" Class="font-weight-bold">
+                                    @_invoice.CustomerName <span class="text-muted">(@_invoice.CustomerNo)</span>
+                                </MudText>
+                            </MudItem>
+
+                            <MudItem xs="12" Class="mt-2">
+                                <MudText Typo="Typo.caption" Class="text-muted d-block">Address</MudText>
+                                <MudText Typo="Typo.body2">@_invoice.CustomerAddress</MudText>
+                            </MudItem>
+
+                            <MudItem xs="6" Class="mt-2">
+                                <MudText Typo="Typo.caption" Class="text-muted d-block">Email</MudText>
+                                <MudText Typo="Typo.body2">@_invoice.CustomerEmail</MudText>
+                            </MudItem>
+                            <MudItem xs="6" Class="mt-2">
+                                <MudText Typo="Typo.caption" Class="text-muted d-block">Contact Number</MudText>
+                                <MudText Typo="Typo.body2">@_invoice.CustomerContactNo</MudText>
+                            </MudItem>
+                        </MudGrid>
+                    </MudCardContent>
+                </MudCard>
+            </MudItem>
+        </MudGrid>
+
+        <!-- INVOICE LINE DETAILS GRID -->
+        <MudPaper Elevation="1" Class="pa-4 mb-4">
+            <div class="d-flex justify-space-between align-center mb-3">
+                <MudText Typo="Typo.h6">
+                    <i class="fa-solid fa-list-check text-primary mr-2"></i> Invoice Line Details
+                </MudText>
+                <MudChip T="string" Color="Color.Default" Size="Size.Small" Variant="Variant.Outlined">
+                    @_invoice.Lines.Count Line Record(s)
+                </MudChip>
+            </div>
+
+            <!-- Responsive MudTable displaying all required columns -->
+            <MudTable Items="@_invoice.Lines" Dense="true" Hover="true" Striped="true" Bordered="true" Elevation="0">
+                <HeaderContent>
+                    <MudTh>#</MudTh>
+                    <MudTh>Item Code</MudTh>
+                    <MudTh>Item Description</MudTh>
+                    <MudTh Class="text-right">Weight (Metric Tons)</MudTh>
+                    <MudTh Class="text-right">Unit Price</MudTh>
+                    <MudTh Class="text-right">Value</MudTh>
+                    <MudTh Class="text-right" Style="background-color: #F0FDF4; font-weight: 600;">Unit Price (BHD)</MudTh>
+                    <MudTh Class="text-right" Style="background-color: #F0FDF4; font-weight: 600;">Value (BHD)</MudTh>
+                    <MudTh Class="text-center">VAT</MudTh>
+                </HeaderContent>
+                <RowTemplate>
+                    <MudTd DataLabel="#">@context.LineNumber</MudTd>
+                    <MudTd DataLabel="Item Code" Class="font-weight-bold">@context.ItemCode</MudTd>
+                    <MudTd DataLabel="Item Description">@context.ItemDescription</MudTd>
+                    <MudTd DataLabel="Weight (Metric Tons)" Class="text-right font-mono">@context.WeightMetricTons.ToString("N4")</MudTd>
+                    <MudTd DataLabel="Unit Price" Class="text-right font-mono">@context.UnitPrice.ToString("N2")</MudTd>
+                    <MudTd DataLabel="Value" Class="text-right font-mono">@context.Value.ToString("N2")</MudTd>
+                    <MudTd DataLabel="Unit Price (BHD)" Class="text-right font-mono text-success" Style="background-color: #F0FDF4;">
+                        @context.UnitPriceBHD.ToString("N4")
+                    </MudTd>
+                    <MudTd DataLabel="Value (BHD)" Class="text-right font-mono font-weight-bold text-success" Style="background-color: #F0FDF4;">
+                        @context.ValueBHD.ToString("N3")
+                    </MudTd>
+                    <MudTd DataLabel="VAT" Class="text-center">
+                        <MudChip T="string" Size="Size.Small" Color="Color.Info" Variant="Variant.Text">
+                            @context.VatRate.ToString("0")% (@context.VatCategoryCode)
+                        </MudChip>
+                    </MudTd>
+                </RowTemplate>
+                <FooterContent>
+                    <MudTd colspan="3" Class="font-weight-bold">Total</MudTd>
+                    <MudTd Class="text-right font-weight-bold font-mono">@_invoice.TotalWeightMetricTons.ToString("N4") MT</MudTd>
+                    <MudTd colspan="2" Class="text-right font-weight-bold">Total in BHD:</MudTd>
+                    <MudTd colspan="2" Class="text-right font-weight-bold font-mono text-success" Style="font-size: 1.1rem; background-color: #F0FDF4;">
+                        @_invoice.TotalLineNetAmountBHD.ToString("N3") BHD
+                    </MudTd>
+                    <MudTd Class="text-center font-mono">
+                        +@_invoice.TotalTaxAmountBHD.ToString("N3") Tax
+                    </MudTd>
+                </FooterContent>
+            </MudTable>
+
+            <!-- Currency Conversion Note & Total Ribbon -->
+            <div class="mt-4 pa-3 bg-light rounded d-flex justify-space-between align-center flex-wrap gap-2">
+                <div class="text-muted small">
+                    <i class="fa-solid fa-circle-info text-info mr-1"></i>
+                    Currency converted to Bahrain Dinar (BHD) at exchange rate 0.376 for statutory NBR e-Invoicing compliance.
+                </div>
+                <div class="d-flex align-center gap-4">
+                    <div>
+                        <span class="text-muted small d-block">Line Net Amount:</span>
+                        <strong class="font-mono">@_invoice.TotalLineNetAmountBHD.ToString("N3") BHD</strong>
+                    </div>
+                    <div>
+                        <span class="text-muted small d-block">Total VAT (10%):</span>
+                        <strong class="font-mono text-warning">@_invoice.TotalTaxAmountBHD.ToString("N3") BHD</strong>
+                    </div>
+                    <div class="border-left pl-3">
+                        <span class="text-muted small d-block">Grand Total:</span>
+                        <strong class="font-mono text-primary" style="font-size: 1.25rem;">@_invoice.TotalInvoiceAmountBHD.ToString("N3") BHD</strong>
+                    </div>
+                </div>
+            </div>
+        </MudPaper>
+
+        <!-- CYGNET TRANSACTION AUDIT CARD -->
+        @if (_lastResult != null)
+        {
+            <MudPaper Elevation="1" Class="pa-4 mb-4 border-left-4 border-info">
+                <div class="d-flex justify-space-between align-center mb-2">
+                    <MudText Typo="Typo.subtitle1" Class="font-weight-bold">
+                        <i class="fa-solid fa-paper-plane text-info mr-2"></i> Cygnet Global E-Invoicing Submission Result
+                    </MudText>
+                    <MudChip T="string" Color="@(_lastResult.Success ? Color.Success : Color.Error)" Size="Size.Small">
+                        @(_lastResult.Success ? "ACKNOWLEDGED / ACCEPTED" : "SUBMISSION FAILED")
+                    </MudChip>
+                </div>
+
+                <MudAlert Severity="@(_lastResult.Success ? Severity.Success : Severity.Error)" Class="mb-3">
+                    @_lastResult.Message
+                </MudAlert>
+
+                <MudGrid>
+                    <MudItem xs="12" sm="4">
+                        <MudText Typo="Typo.caption" Class="text-muted d-block">Reference ID</MudText>
+                        <MudText Typo="Typo.body2" Class="font-weight-bold font-mono">@_lastResult.ReferenceId</MudText>
+                    </MudItem>
+                    <MudItem xs="12" sm="4">
+                        <MudText Typo="Typo.caption" Class="text-muted d-block">Authentication Token Source</MudText>
+                        <MudText Typo="Typo.body2">
+                            @(_lastResult.TokenFromCache ? "Reused 6-Hour Cached Token" : "Newly Authenticated Token")
+                        </MudText>
+                    </MudItem>
+                    <MudItem xs="12" sm="4">
+                        <MudText Typo="Typo.caption" Class="text-muted d-block">Timestamp (UTC)</MudText>
+                        <MudText Typo="Typo.body2">@_lastResult.ProcessedAtUtc.ToString("yyyy-MM-dd HH:mm:ss")</MudText>
+                    </MudItem>
+                </MudGrid>
+            </MudPaper>
+        }
+    }
+</MudContainer>

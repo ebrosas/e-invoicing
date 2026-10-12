@@ -1,0 +1,50 @@
+{
+  "Version": 1,
+  "Hash": "dAs/hNTxKRpOxQzZ47dqPibgfeyRxYg5ANR/uV8+46s=",
+  "Source": "EInvoicing.Web",
+  "BasePath": "_content/EInvoicing.Web",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [
+    {
+      "Identity": "/root/.nuget/packages/mudblazor/8.8.0/staticwebassets/MudBlazor.min.css",
+      "SourceId": "MudBlazor",
+      "SourceType": "Package",
+      "ContentRoot": "/root/.nuget/packages/mudblazor/8.8.0/staticwebassets/",
+      "BasePath": "_content/MudBlazor",
+      "RelativePath": "MudBlazor.min.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/root/.nuget/packages/mudblazor/8.8.0/staticwebassets/MudBlazor.min.css"
+    },
+    {
+      "Identity": "/root/.nuget/packages/mudblazor/8.8.0/staticwebassets/MudBlazor.min.js",
+      "SourceId": "MudBlazor",
+      "SourceType": "Package",
+      "ContentRoot": "/root/.nuget/packages/mudblazor/8.8.0/staticwebassets/",
+      "BasePath": "_content/MudBlazor",
+      "RelativePath": "MudBlazor.min.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/root/.nuget/packages/mudblazor/8.8.0/staticwebassets/MudBlazor.min.js"
+    }
+  ]
+}

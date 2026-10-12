@@ -1,0 +1,6 @@
+{
+  "name": "JDE ERP E-Invoicing System",
+  "description": "Clean Architecture Blazor Server E-Invoicing application for JDE ERP integrating secuser.Vw_SalesInvoiceDetail and Cygnet Global E-Invoicing APIs.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
