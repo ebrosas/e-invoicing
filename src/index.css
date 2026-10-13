@@ -3,11 +3,87 @@
 @layer base {
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-    color: #1e293b;
-    background-color: #f1f5f9;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
   
   .font-mono {
     font-family: 'JetBrains Mono', monospace;
   }
+}
+
+/* Application-wide Theme Definitions */
+
+/* 1. PROFESSIONAL THEME: Oracle JD Edwards (JDE) EnterpriseOne ERP */
+.theme-professional {
+  --theme-bg-canvas: #F0F3F7; /* JDE Enterprise Canvas */
+  --theme-bg-surface: #FFFFFF;
+  --theme-bg-card: #FFFFFF;
+  --theme-border: #B8C7D8; /* JDE Classic 1px Border */
+  --theme-border-subtle: #D5DFEB;
+  --theme-text-primary: #0F2439; /* JDE Deep Navy Text */
+  --theme-text-secondary: #4B637B;
+  --theme-header-bg: #003366; /* Classic Oracle JDE Deep Blue */
+  --theme-brand-accent: #0A4A82; /* JDE Secondary Steel Blue */
+  --theme-highlight: #C89D2B; /* Oracle Gold Accent */
+  --theme-btn-primary: #003366;
+  --theme-btn-primary-hover: #002244;
+  --theme-btn-process: #0A4A82;
+  --theme-btn-process-hover: #07355E;
+  --theme-table-stripe: #F4F8FC; /* Classic JDE Row Striping */
+  --theme-table-header: #D9E5F2; /* Classic JDE Soft Blue Grid Header */
+  --theme-toolbar-bg: #E4ECF4;
+}
+
+/* 2. LIGHT MODE THEME: Top 5 HRMS Applications (Workday, BambooHR, Rippling, Deel, Darwinbox) */
+.theme-light {
+  --theme-bg-canvas: #F8FAFC;
+  --theme-bg-surface: #FFFFFF;
+  --theme-bg-card: #FFFFFF;
+  --theme-border: #E2E8F0;
+  --theme-border-subtle: #F1F5F9;
+  --theme-text-primary: #0F172A;
+  --theme-text-secondary: #64748B;
+  --theme-header-bg: #005CB9; /* Workday Enterprise Navy */
+  --theme-brand-accent: #0284C7;
+  --theme-highlight: #F59E0B;
+  --theme-btn-primary: #2563EB;
+  --theme-btn-primary-hover: #1D4ED8;
+  --theme-btn-process: #059669;
+  --theme-btn-process-hover: #047857;
+  --theme-table-stripe: #F8FAFC;
+  --theme-table-header: #F1F5F9;
+}
+
+/* 3. DARK MODE THEME: Modern Enterprise HRMS Dark Consoles (Workday Dark, Rippling Console) */
+.theme-dark {
+  --theme-bg-canvas: #0B0F19;
+  --theme-bg-surface: #111827;
+  --theme-bg-card: #151F32;
+  --theme-border: #1F2937;
+  --theme-border-subtle: #1E293B;
+  --theme-text-primary: #F8FAFC;
+  --theme-text-secondary: #94A3B8;
+  --theme-header-bg: #0B0F19;
+  --theme-brand-accent: #38BDF8; /* Electric Azure */
+  --theme-highlight: #FBBF24;
+  --theme-btn-primary: #0284C7;
+  --theme-btn-primary-hover: #0369A1;
+  --theme-btn-process: #059669;
+  --theme-btn-process-hover: #047857;
+  --theme-table-stripe: #0E1626;
+  --theme-table-header: #1E293B;
+}
+
+/* Pill buttons with ambient drop shadow elevation */
+.pill-btn-shadow {
+  box-shadow: 0 4px 14px 0 rgba(0, 0, 0, 0.12);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.pill-btn-shadow:hover:not(:disabled) {
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.18);
+  transform: translateY(-1px);
+}
+.pill-btn-shadow:active:not(:disabled) {
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.12);
+  transform: translateY(0);
 }

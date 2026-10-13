@@ -1,111 +1,81 @@
-# JDE ERP E-Invoicing System (Blazor Server & Clean Architecture)
+# GARMCO E-Invoicing: Oracle JD Edwards (JDE) ERP Professional Theme Redesign
 
-An enterprise E-Invoicing system designed for JDE ERP integration, retrieving sales invoice headers and multi-line details from SQL Server view `secuser.Vw_SalesInvoiceDetail` and transmitting compliant Bahrain e-invoices to Cygnet Global E-Invoicing APIs with token caching, real-time payload generation, and reference tracking.
+This plan details the revision of the **Professional Theme** to authentically mirror the visual design, palette, component hierarchy, and layout of the **Oracle JD Edwards (JDE) EnterpriseOne ERP system**.
 
 ### User Review & Critical Decisions
 
 > [!IMPORTANT]
-> The architectural direction and configuration strategy have been confirmed as follows:
+> The architectural direction and specific JDE design decisions have been confirmed:
 
-- **Confirmed Decision 1 (Data Source & Seeding)**: The application will include pre-seeded JDE sales invoice records reflecting the exact `secuser.Vw_SalesInvoiceDetail` schema for instant exploration and testing, backed by configurable SQL Server EF Core connection strings in `appsettings.json`.
-- **Confirmed Decision 2 (Cygnet API & Sandbox Execution)**: An interactive toggle will allow seamless switching between live Cygnet staging endpoints (`https://staging-bh-api-cygnettaxglobaleinvoicing.cygnet.one`) with user-provided credentials and a sandbox simulation mode returning authentic reference IDs and validation logs.
-- **Confirmed Decision 3 (Hosting & Delivery)**: Dual delivery architecture:
-  1. Complete, production-ready C# .NET 8 Clean Architecture solution structure (`EInvoicing.sln` comprising `EInvoicing.Domain`, `EInvoicing.Application`, `EInvoicing.Infrastructure`, and `EInvoicing.Web` with MudBlazor 8.8.0 components and `.razor.cs` code-behind).
-  2. Full interactive web application running in AI Studio preview on port 3000 replicating the exact MudBlazor 8.8.0 component behavior, JDE query parameter handling (`?invoiceNo=...`), form reset, search, and Cygnet API transaction workflows.
+- **Confirmed Decision 1 (JDE Generation & Palette)**: The Professional theme will replicate the iconic **Classic JDE EnterpriseOne Blue & Gray** aesthetic—featuring the signature JDE deep enterprise blue top banner (`#003366` / `#0B3056`), secondary slate steel blue (`#1A5276`), enterprise beige/cool gray canvas (`#ECEFF4` / `#F0F3F7`), and soft cornflower blue grid headers (`#D9E5F2`).
+- **Confirmed Decision 2 (Dedicated JDE Action Toolbar)**: Integration of a dedicated JDE EnterpriseOne interactive action toolbar ribbon above the form—featuring JDE's standard **Find** (Search), **Cancel / Clear** (Reset), **Form Exit: Process E-Invoice**, and **Row / Tools Exits** (View Payload, Fast Path, Staging Status).
+- **Confirmed Decision 3 (High-Density Enterprise Grid)**: High-density tabular layout for Invoice Line Details with soft blue column headers (`#D9E5F2`), sharp 1px grid borders (`#B5C7D9`), row selection markers, and strict tabular numerals for weights and BHD currency figures.
+- **Confirmed Decision 4 (Header/Detail Form Architecture)**: Restructuring the header fields into JDE EnterpriseOne group boxes with formal field label/data alignments (`P4210` / `P03B102` Header Detail style).
 
 ---
 
 ### 1. Overview & Core Concept
 
-- **What It Does**: Bridges JDE ERP with Cygnet Global E-Invoicing for the Kingdom of Bahrain. When an ERP operator clicks "Print Invoice" in JDE, the system accepts `?invoiceNo={InvoiceNo}`, queries `secuser.Vw_SalesInvoiceDetail`, populates the invoice header (Sold To, Customer No, Address, Contact, Payment Terms, Due Date) and a responsive multi-line grid with Metric Tons, Unit Price, Total Value, and BHD currency conversions. Users can search alternative invoices, reset the workspace with auto-focus, and execute "Process Invoice" which handles OAuth-like 6-hour token lifecycle management and document submission.
-- **Target Audience / Persona**: Billing Specialists, ERP Controllers, Tax & Compliance Officers operating JDE ERP in Bahrain.
-- **Key Value**: Eliminates manual invoice re-entry, guarantees valid BHD currency conversions and VAT calculations, complies with Bahrain National Bureau for Revenue (NBR) e-invoicing standards via Cygnet, and provides instant status feedback with trace reference IDs.
+- **What It Does**: Transforms the Professional theme from the previous Toastmasters palette into an authentic **Oracle JD Edwards EnterpriseOne ERP** experience. Users working in JDE will experience seamless visual continuity—looking and behaving like a native JDE EnterpriseOne Interactive Application (e.g. `W4210A` / `W4205A` Sales Order / Invoice Inquiry & Confirmation).
+- **Target Audience**: JDE ERP Operators, Billing Controllers, and Finance Officers in GARMCO Bahrain.
+- **Key Value**: Unifies the external E-Invoicing portal with the internal JDE ERP look and feel, reducing cognitive load and training overhead.
 
 ---
 
 ### 2. User Experience & Visual Design
 
-- **Key User Flows**:
-  1. **Direct JDE ERP Inbound Landing**: App loads with query string `?invoiceNo=DOC-INV-04`. It immediately queries the database view, populates the header cards and lines table, and displays a ready badge.
-  2. **Search & Reset**:
-     - *Reset*: Clears all header cards, lines, summary metrics, and validation logs, placing keyboard focus directly into the Invoice Number input field.
-     - *Search*: User types an invoice number (or selects from an auto-complete list of JDE numbers) and clicks "Search" (or presses Enter) to retrieve live records.
-  3. **Process Invoice Execution**:
-     - User clicks "Process Invoice".
-     - System executes Token Authentication (caching token for 6 hours; refreshes automatically if within 10 minutes of expiry).
-     - System maps JDE header and line items into the Cygnet Bahrain E-Invoicing document format (`INV`, 380, BHD, Sold To/Bill To identifiers, VAT rate 5%/10%, total amounts, custom fields).
-     - System calls Documents API `save` endpoint and displays the returned `referenceId`, submission timestamp, and full JSON audit payload.
-- **Visual Identity & Theme**:
-  - *Design System*: MudBlazor 8.8.0 enterprise palette with deep navy structural frame (`#0F172A`), crisp neutral surface (`#F8FAFC`), enterprise slate borders, and MudBlazor primary blue (`#2563EB`) and emerald status accents (`#059669`).
-  - *Typography*: Clean corporate sans for UI hierarchy (`Plus Jakarta Sans`) paired with monospace tabular figures (`JetBrains Mono` / `tabular-nums`) for currency amounts, quantities, and reference numbers.
-  - *Layout Density*: Enterprise high-density tabular view with MudBlazor `MudDataGrid` styling, compact header metric ribbons, and zero decorative fluff.
-- **Interactive Feedback & States**:
-  - Auto-focus on reset.
-  - Progress circular indicators during API execution.
-  - MudBlazor `MudAlert` and `MudSnackbar` notifications for success, validation errors, and token expiration countdowns.
-  - Raw JSON audit viewer dialog to inspect Cygnet request/response payloads.
+#### Color Tokens (Oracle JDE EnterpriseOne Professional Theme)
+
+| Element | JDE ERP Token & Color | Function |
+|---|---|---|
+| **Top Banner / App Bar** | Deep Enterprise Blue (`#003366`) | Oracle JDE EnterpriseOne system banner with Oracle gold accent |
+| **System Identity & Logo** | Oracle Gold (`#C89D2B`) & White | GARMCO JDE EnterpriseOne brand lockup |
+| **Action Toolbar Ribbon** | Cool Steel Silver (`#E2E8F0` / `#DCE4EC`) | Houses Find, Reset, Process Invoice, and Exits |
+| **Canvas Background** | JDE Enterprise Neutral (`#F0F3F7`) | Clean, non-distracting ERP application backdrop |
+| **Group Boxes / Cards** | Crisp White (`#FFFFFF`) / JDE Border (`#B8C7D8`) | Structured group boxes with titled legend banners |
+| **Grid Column Headers** | Soft Cornflower Blue (`#D9E5F2`) | Classic JDE grid header with dark text (`#0F2439`) |
+| **Grid Row Alternate** | Subtle Cool Blue (`#F4F8FC`) | High-density zebra striping for rapid scanning |
+| **Primary Actions** | JDE Deep Navy (`#003366`) / Gold Hover | Rounded action buttons with ambient shadows |
+| **NBR Compliant Badge** | JDE Gold (`#B38600` on `#FFF8E1`) | Compliance accreditation chip |
+
+#### Dedicated JDE EnterpriseOne Action Toolbar
+- **Find (Search)**: Action button with search magnifying glass and keyboard Enter shortcut.
+- **Cancel / Reset**: Action button with reset arrow, clearing fields and refocusing Invoice No.
+- **Form Exit: Process Invoice**: Gold-accented action button triggering the 6-hour token authentication and Cygnet Save Document API.
+- **Tools / Row Exits**: Quick links to "JDE Deep Links", "View JSON Payload", and "Cygnet Token Status".
 
 ---
 
-### 3. Key Product Decisions & Trade-Offs
-
-- **Decision 1: Clean Architecture Solution Partitioning**
-  - *Approach*: Strict separation across four C# projects: `EInvoicing.Domain` (pure C# entities, enums, exceptions), `EInvoicing.Application` (CQRS-style commands, queries, DTOs, interfaces), `EInvoicing.Infrastructure` (EF Core `DbContext`, SQL Server mapping, Cygnet HttpClient, MemoryCache), and `EInvoicing.Web` (Blazor Server, MudBlazor 8.8.0, Razor code-behind).
-  - *Why*: Ensures enterprise maintainability, testability, and adherence to Microsoft Clean Architecture best practices.
-- **Decision 2: 6-Hour Cygnet Token Caching Strategy**
-  - *Approach*: Store the retrieved Cygnet JWT token with an expiration timestamp (`6 hours = 360 minutes`). Pre-emptively trigger `forceRefresh: true` if execution occurs within 10 minutes of expiration.
-  - *Why*: Avoids excessive authentication calls on every invoice submission while adhering to Cygnet's API rate limits and security guidelines.
-- **Decision 3: Dual Hosting & Instant Interactivity**
-  - *Approach*: Provide full, syntactically verified C# project code files for Visual Studio / `dotnet build` alongside an interactive preview server running on port 3000 so the user can immediately test the exact MudBlazor UI, search, reset, and Cygnet API workflows in AI Studio.
-
----
-
-### 4. Technical Architecture & Data Strategy
+### 3. Technical Architecture & File Updates
 
 ```
 ┌────────────────────────────────────────────────────────────────────────┐
-│                        JDE ERP (Client Browser)                        │
-│                 URL: https://app/?invoiceNo=DOC-INV-04                 │
+│             Oracle JD Edwards EnterpriseOne Top Banner                 │
+│         Deep Blue (#003366) • GARMCO E-Invoicing • Fast Path           │
 └───────────────────────────────────┬────────────────────────────────────┘
+                                    │
+┌───────────────────────────────────▼────────────────────────────────────┐
+│                  JDE EnterpriseOne Action Toolbar                      │
+│     [ Find ]  [ Clear ]  [ Form Exit: Process E-Invoice ]  [ Tools ]   │
+└───────────────────────────────────┬────────────────────────────────────┘
+                                    │
+        ┌───────────────────────────┴───────────────────────────┐
+        ▼                                                       ▼
+┌──────────────────────────────────┐  ┌──────────────────────────────────┐
+│  Group Box: Invoice Header Info  │  │   Group Box: Sold To Details     │
+│  • Invoice No (with validation)  │  │   • Customer Name & No           │
+│  • Invoice & DO Dates            │  │   • Address, Contact, Email      │
+│  • Payment Terms & Net Due Date  │  │                                  │
+└──────────────────────────────────┴──┴──────────────────────────────────┘
                                     │
                                     ▼
 ┌────────────────────────────────────────────────────────────────────────┐
-│                    EInvoicing.Web (Blazor Server)                      │
-│  ┌───────────────────────┐  ┌──────────────────────────────────────┐   │
-│  │ InvoiceDetails.razor   │  │ InvoiceDetails.razor.cs (Code-Behind)│   │
-│  │ (MudBlazor 8.8.0 UI)  │  │ - SearchHandler, ResetHandler        │   │
-│  │ - Header Cards        │  │ - ProcessInvoiceHandler              │   │
-│  │ - Lines MudDataGrid   │  │ - NavigationManager / QueryString    │   │
-│  └───────────────────────┘  └──────────────────┬───────────────────┘   │
-└────────────────────────────────────────────────┼───────────────────────┘
-                                                 │
-                                                 ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│                   EInvoicing.Application (Use Cases)                   │
-│  • GetInvoiceByNumberQuery    • ProcessInvoiceCommand                  │
-│  • ISalesInvoiceRepository     • ICygnetEInvoicingService              │
-│  • SalesInvoiceDto & Mappers  • CygnetDocumentSaveRequestDto           │
-└───────────────────────┬────────────────────────────────┬───────────────┘
-                        │                                │
-                        ▼                                ▼
-┌──────────────────────────────────────┐  ┌──────────────────────────────┐
-│       EInvoicing.Infrastructure      │  │   Cygnet Global E-Invoicing  │
-│  • AppDbContext (EF Core SQL Server) │  │   Staging REST Endpoints     │
-│  • View: Vw_SalesInvoiceDetail       │  │   1. /authenticate/token     │
-│  • Repository Implementation         │  │   2. /document/save          │
-│  • TokenCache (6-hour sliding)       │  │                              │
-└──────────────────────────────────────┘  └──────────────────────────────┘
+│     JDE Line Details Data Grid (Soft Blue Headers #D9E5F2, Compact)    │
+│  • Line No • Item Code • Description • MT • Price • Value • BHD Values │
+└────────────────────────────────────────────────────────────────────────┘
 ```
 
-#### Database View Schema (`secuser.Vw_SalesInvoiceDetail`)
-The entity maps the following database columns:
-- `InvoiceNo` (nvarchar), `InvoiceDate` (datetime2)
-- `DeliveryOrderNo` (nvarchar), `DeliveryOrderDate` (datetime2)
-- `CustomerNo` (nvarchar), `CustomerName` (nvarchar)
-- `CustomerAddress` (nvarchar), `CustomerEmail` (nvarchar), `CustomerContactNo` (nvarchar)
-- `PaymentTerms` (nvarchar), `NetDueDate` (datetime2)
-- Line items: `LineNumber` (int), `ItemCode` (nvarchar), `ItemDescription` (nvarchar), `WeightMetricTons` (decimal), `UnitPrice` (decimal), `Value` (decimal), `UnitPriceBHD` (decimal), `ValueBHD` (decimal)
-
-#### Cygnet API Integration
-- **Authentication**: `POST /enriched/v0.1/authenticate/token` with headers `client-id`, `client-secret` and body `{ forceRefresh, username, password }`. Caches token for 6 hours.
-- **Document Save**: `POST /enriched/v0.1/document/save` with headers `auth-token`, `callback-url` and the Bahrain e-Invoice payload (`Country="BH"`, `DocumentType="INV"`, `DocumentTypePurpose="380"`, line items, VAT categorization, currency BHD).
+1. **`src/index.css`**: Update `.theme-professional` tokens to Oracle JDE EnterpriseOne specifications (`#003366` header, `#D9E5F2` table header, `#F0F3F7` canvas, `#B8C7D8` borders).
+2. **`src/App.tsx`**: Update layout to render the JDE EnterpriseOne Action Toolbar, JDE group boxes, and soft-blue table styling when the Professional theme is selected.
+3. **`EInvoicing.Web/Shared/MainLayout.razor`**: Update `_professionalTheme` palette with Oracle JDE `#003366` primary, `#D9E5F2` lines/table header, and JDE action bar styling.
+4. **Verification**: Run `compile_applet`, `lint_applet`, and verify zero errors.

@@ -3,25 +3,78 @@
 @using EInvoicing.Application.DTOs
 @using MudBlazor
 
-<PageTitle>E-Invoicing Details - JDE ERP Integration</PageTitle>
+<PageTitle>GARMCO E-Invoicing Details - JDE ERP Integration</PageTitle>
 
-<MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="mt-2 mb-8">
+<MudContainer MaxWidth="MaxWidth.ExtraLarge" Class="mt-6 mb-12">
+    <!-- DEDICATED ORACLE JDE ENTERPRISEONE ACTION TOOLBAR -->
+    <MudPaper Class="pa-3 mb-4 rounded-lg d-flex flex-wrap align-center justify-space-between gap-3" Style="background-color: #E4ECF4; border: 1px solid #B8C7D8;" Elevation="0">
+        <div class="d-flex align-center gap-2 flex-wrap">
+            <span class="text-caption font-weight-bold text-uppercase text-primary px-2 d-flex align-center gap-1">
+                <i class="fa-solid fa-sliders text-secondary mr-1"></i> JDE Actions:
+            </span>
+            <!-- JDE Find Action -->
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Primary"
+                       Size="Size.Small"
+                       StartIcon="@Icons.Material.Filled.Search"
+                       OnClick="SearchInvoiceAsync"
+                       Disabled="@(_isLoading || string.IsNullOrWhiteSpace(_searchInvoiceNo))"
+                       Class="rounded-pill px-4 py-1 font-weight-bold shadow-sm">
+                Find (Search)
+            </MudButton>
+            <!-- JDE Clear Action -->
+            <MudButton Variant="Variant.Outlined"
+                       Color="Color.Dark"
+                       Size="Size.Small"
+                       StartIcon="@Icons.Material.Filled.Refresh"
+                       OnClick="ResetFormAsync"
+                       Disabled="_isLoading"
+                       Class="rounded-pill px-4 py-1 font-weight-bold shadow-sm bg-white">
+                Cancel / Clear
+            </MudButton>
+            <!-- JDE Form Exit: Process E-Invoice -->
+            <MudButton Variant="Variant.Filled"
+                       Color="Color.Success"
+                       Size="Size.Small"
+                       StartIcon="@Icons.Material.Filled.CloudUpload"
+                       OnClick="ProcessInvoiceAsync"
+                       Disabled="@(_isLoading || _invoice == null)"
+                       Class="rounded-pill px-5 py-1 font-weight-bold shadow-sm">
+                Form Exit: Process E-Invoice
+            </MudButton>
+        </div>
+        <div class="d-flex align-center gap-2 text-caption">
+            <span class="text-muted">Tools:</span>
+            <MudChip T="string" Size="Size.Small" Variant="Variant.Text" Color="Color.Info" Class="rounded-pill font-mono">
+                Fast Path: P4210 / W4210A
+            </MudChip>
+            <MudChip T="string" Size="Size.Small" Variant="Variant.Text" Color="Color.Success" Class="rounded-pill font-mono">
+                Token: @_tokenStatusSummary
+            </MudChip>
+        </div>
+    </MudPaper>
+
     <!-- Top Action Bar & Search Card -->
-    <MudPaper Class="pa-4 mb-4" Elevation="1">
+    <MudPaper Class="pa-5 mb-6 rounded-lg shadow-sm" Elevation="1">
         <MudGrid Class="align-center">
             <!-- Search Input and Search Button Beside It -->
             <MudItem xs="12" sm="6" md="5" lg="4">
                 <div class="d-flex align-center gap-2">
-                    <MudTextField @ref="_invoiceNumberInput"
-                                  @bind-Value="_searchInvoiceNo"
-                                  Label="Invoice Number"
-                                  Variant="Variant.Outlined"
-                                  Margin="Margin.Dense"
-                                  Placeholder="Enter or scan Invoice No. (e.g. DOC-INV-04)"
-                                  Adornment="Adornment.Start"
-                                  AdornmentIcon="@Icons.Material.Filled.Receipt"
-                                  OnKeyDown="@HandleKeyDown"
-                                  FullWidth="true" />
+                    <MudTooltip Text="Guidance: Standard JDE formats include DOC-INV-04, INV-2026-001, or INV-JDE-8890" Arrow="true" Placement="Placement.Top">
+                        <MudTextField @ref="_invoiceNumberInput"
+                                      @bind-Value="_searchInvoiceNo"
+                                      Label="Invoice Number"
+                                      Variant="Variant.Outlined"
+                                      Margin="Margin.Dense"
+                                      Placeholder="Enter or scan Invoice No. (e.g. DOC-INV-04)"
+                                      Adornment="Adornment.Start"
+                                      AdornmentIcon="@Icons.Material.Filled.Receipt"
+                                      Validation="@(new Func<string, string?>(ValidateInvoiceNumber))"
+                                      HelperText="Required. Example formats: DOC-INV-xx or INV-xxxx-xxx"
+                                      OnKeyDown="@HandleKeyDown"
+                                      Immediate="true"
+                                      FullWidth="true" />
+                    </MudTooltip>
 
                     <!-- Search Button placed beside Invoice No. -->
                     <MudButton Variant="Variant.Filled"
@@ -29,22 +82,23 @@
                                Size="Size.Medium"
                                StartIcon="@Icons.Material.Filled.Search"
                                OnClick="SearchInvoiceAsync"
-                               Disabled="_isLoading"
-                               Class="px-4 py-2 text-nowrap">
+                               Disabled="@(_isLoading || string.IsNullOrWhiteSpace(_searchInvoiceNo))"
+                               Class="rounded-pill px-5 py-2 text-nowrap font-weight-bold shadow-md">
                         Search
                     </MudButton>
                 </div>
             </MudItem>
 
             <!-- Reset Button & Action Buttons -->
-            <MudItem xs="12" sm="6" md="7" lg="8" Class="d-flex justify-sm-end align-center gap-2">
+            <MudItem xs="12" sm="6" md="7" lg="8" Class="d-flex justify-sm-end align-center gap-3">
                 <!-- Reset Button -->
                 <MudButton Variant="Variant.Outlined"
                            Color="Color.Secondary"
                            Size="Size.Medium"
                            StartIcon="@Icons.Material.Filled.Refresh"
                            OnClick="ResetFormAsync"
-                           Disabled="_isLoading">
+                           Disabled="_isLoading"
+                           Class="rounded-pill px-4 py-2 font-weight-bold shadow-sm">
                     Reset
                 </MudButton>
 
@@ -54,7 +108,8 @@
                            Size="Size.Medium"
                            StartIcon="@Icons.Material.Filled.CloudUpload"
                            OnClick="ProcessInvoiceAsync"
-                           Disabled="@(_isLoading || _invoice == null)">
+                           Disabled="@(_isLoading || _invoice == null)"
+                           Class="rounded-pill px-6 py-2 font-weight-bold shadow-lg">
                     @if (_isProcessing)
                     {
                         <MudProgressCircular Size="Size.Small" Indeterminate="true" Class="mr-2" />
@@ -216,15 +271,15 @@
             <!-- Responsive MudTable displaying all required columns -->
             <MudTable Items="@_invoice.Lines" Dense="true" Hover="true" Striped="true" Bordered="true" Elevation="0">
                 <HeaderContent>
-                    <MudTh>#</MudTh>
-                    <MudTh>Item Code</MudTh>
-                    <MudTh>Item Description</MudTh>
-                    <MudTh Class="text-right">Weight (Metric Tons)</MudTh>
-                    <MudTh Class="text-right">Unit Price</MudTh>
-                    <MudTh Class="text-right">Value</MudTh>
-                    <MudTh Class="text-right" Style="background-color: #F0FDF4; font-weight: 600;">Unit Price (BHD)</MudTh>
-                    <MudTh Class="text-right" Style="background-color: #F0FDF4; font-weight: 600;">Value (BHD)</MudTh>
-                    <MudTh Class="text-center">VAT</MudTh>
+                    <MudTh Style="background-color: #D9E5F2; color: #0F2439; font-weight: bold;">#</MudTh>
+                    <MudTh Style="background-color: #D9E5F2; color: #0F2439; font-weight: bold;">Item Code</MudTh>
+                    <MudTh Style="background-color: #D9E5F2; color: #0F2439; font-weight: bold;">Item Description</MudTh>
+                    <MudTh Class="text-right" Style="background-color: #D9E5F2; color: #0F2439; font-weight: bold;">Weight (Metric Tons)</MudTh>
+                    <MudTh Class="text-right" Style="background-color: #D9E5F2; color: #0F2439; font-weight: bold;">Unit Price</MudTh>
+                    <MudTh Class="text-right" Style="background-color: #D9E5F2; color: #0F2439; font-weight: bold;">Value</MudTh>
+                    <MudTh Class="text-right" Style="background-color: #D9E5F2; color: #0F2439; font-weight: bold;">Unit Price (BHD)</MudTh>
+                    <MudTh Class="text-right" Style="background-color: #D9E5F2; color: #0F2439; font-weight: bold;">Value (BHD)</MudTh>
+                    <MudTh Class="text-center" Style="background-color: #D9E5F2; color: #0F2439; font-weight: bold;">VAT</MudTh>
                 </HeaderContent>
                 <RowTemplate>
                     <MudTd DataLabel="#">@context.LineNumber</MudTd>

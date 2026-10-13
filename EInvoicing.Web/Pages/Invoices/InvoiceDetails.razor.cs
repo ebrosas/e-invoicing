@@ -170,4 +170,20 @@ public partial class InvoiceDetails : ComponentBase
             await SearchInvoiceAsync();
         }
     }
+
+    /// <summary>
+    /// Validates invoice number input format and non-emptiness before database query.
+    /// </summary>
+    private string? ValidateInvoiceNumber(string value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return "Invoice Number is required to query secuser.Vw_SalesInvoiceDetail.";
+        }
+        if (value.Trim().Length < 3)
+        {
+            return "Invoice Number must contain at least 3 characters.";
+        }
+        return null;
+    }
 }

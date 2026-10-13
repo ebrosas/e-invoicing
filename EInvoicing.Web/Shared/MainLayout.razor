@@ -1,52 +1,144 @@
 @inherits LayoutComponentBase
 
-<MudThemeProvider Theme="_theme" />
+<MudThemeProvider Theme="_currentTheme" IsDarkMode="@(_currentThemeMode == "Dark")" />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
 <MudLayout>
-    <MudAppBar Elevation="1" Dense="true" Color="Color.Dark">
+    <MudAppBar Elevation="2" Dense="false" Style="@GetAppBarStyle()">
         <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
-        <MudText Typo="Typo.h6" Class="ml-2 font-weight-bold">
-            <i class="fa-solid fa-file-invoice text-info mr-2"></i> JDE E-Invoicing Portal
+        <MudText Typo="Typo.h6" Class="ml-2 font-weight-bold d-flex align-center gap-2">
+            <i class="fa-solid fa-industry text-warning mr-2"></i> GARMCO E-Invoicing Portal
         </MudText>
-        <MudChip T="string" Color="Color.Info" Size="Size.Small" Class="ml-4" Variant="Variant.Outlined">
-            Bahrain E-Invoice Compliant
+        <MudChip T="string" Color="Color.Warning" Size="Size.Small" Class="ml-4 font-weight-bold rounded-pill" Variant="Variant.Outlined">
+            Bahrain NBR Compliant
         </MudChip>
+        
         <MudSpacer />
-        <MudIconButton Icon="@Icons.Material.Filled.HelpOutline" Color="Color.Inherit" />
+
+        <!-- Application-Wide Theme Switcher -->
+        <MudButtonGroup Variant="Variant.Filled" Size="Size.Small" Class="rounded-pill shadow-sm bg-black-20">
+            <MudButton Color="@(_currentThemeMode == "Professional" ? Color.Warning : Color.Dark)" 
+                       OnClick="@(() => SetTheme("Professional"))"
+                       Class="rounded-pill px-3 py-1 font-weight-bold">
+                <i class="fa-solid fa-award mr-1"></i> Professional
+            </MudButton>
+            <MudButton Color="@(_currentThemeMode == "Light" ? Color.Primary : Color.Dark)" 
+                       OnClick="@(() => SetTheme("Light"))"
+                       Class="rounded-pill px-3 py-1 font-weight-bold">
+                <i class="fa-solid fa-sun mr-1"></i> Light
+            </MudButton>
+            <MudButton Color="@(_currentThemeMode == "Dark" ? Color.Info : Color.Dark)" 
+                       OnClick="@(() => SetTheme("Dark"))"
+                       Class="rounded-pill px-3 py-1 font-weight-bold">
+                <i class="fa-solid fa-moon mr-1"></i> Dark
+            </MudButton>
+        </MudButtonGroup>
     </MudAppBar>
 
     <MudDrawer @bind-Open="_drawerOpen" ClipMode="DrawerClipMode.Always" Elevation="2">
         <NavMenu />
     </MudDrawer>
 
-    <MudMainContent Class="pa-4 bg-light">
+    <!-- Enhanced margin and spacing from top banner -->
+    <MudMainContent Class="pa-6 pa-md-8 pt-8">
         @Body
     </MudMainContent>
 </MudLayout>
 
 @code {
     private bool _drawerOpen = true;
+    private string _currentThemeMode = "Professional";
 
     private void DrawerToggle()
     {
         _drawerOpen = !_drawerOpen;
     }
 
-    private MudTheme _theme = new MudTheme()
+    private void SetTheme(string themeMode)
+    {
+        _currentThemeMode = themeMode;
+        StateHasChanged();
+    }
+
+    private string GetAppBarStyle()
+    {
+        return _currentThemeMode switch
+        {
+            "Professional" => "background-color: #003366; color: #FFFFFF; border-bottom: 2px solid #C89D2B;", // Oracle JDE Deep Blue with Gold trim
+            "Dark" => "background-color: #0F172A; color: #F8FAFC;",         // HRMS Dark Slate
+            _ => "background-color: #005CB9; color: #FFFFFF;"              // HRMS Royal Blue
+        };
+    }
+
+    private MudTheme _currentTheme => _currentThemeMode switch
+    {
+        "Professional" => _professionalTheme,
+        "Dark" => _darkHrmsTheme,
+        _ => _lightHrmsTheme
+    };
+
+    // 1. Professional Theme (Oracle JD Edwards EnterpriseOne ERP System)
+    // Primary: JDE Deep Blue #003366, Secondary: Steel Blue #0A4A82, Canvas: Neutral Gray #F0F3F7, Accent: Oracle Gold #C89D2B
+    private readonly MudTheme _professionalTheme = new MudTheme()
     {
         PaletteLight = new PaletteLight()
         {
-            Primary = "#1E40AF",
-            Secondary = "#0F766E",
-            AppbarBackground = "#0F172A",
-            Background = "#F8FAFC",
+            Primary = "#003366",        // Oracle JDE Deep Blue
+            Secondary = "#0A4A82",      // JDE Steel Blue
+            AppbarBackground = "#003366",
+            Background = "#F0F3F7",     // JDE Enterprise Canvas Neutral
             Surface = "#FFFFFF",
             DrawerBackground = "#FFFFFF",
-            DrawerText = "#1E293B",
+            DrawerText = "#0F2439",
+            TextPrimary = "#0F2439",
+            TextSecondary = "#4B637B",
+            ActionDefault = "#003366",
+            Warning = "#C89D2B",        // Oracle Enterprise Gold
+            Success = "#0A4A82",        // JDE Primary Action Blue
+            LinesDefault = "#B8C7D8"    // JDE Table/Border Grid Gray-Blue
+        }
+    };
+
+    // 2. Light Mode Theme (Top HRMS Applications: Workday, BambooHR, Rippling, Deel, Darwinbox)
+    // Canvas: #F8FAFC, Header: #005CB9, Primary: #2563EB, Accents: #059669
+    private readonly MudTheme _lightHrmsTheme = new MudTheme()
+    {
+        PaletteLight = new PaletteLight()
+        {
+            Primary = "#005CB9",        // Workday Enterprise Blue
+            Secondary = "#059669",      // BambooHR / Rippling Emerald
+            AppbarBackground = "#005CB9",
+            Background = "#F8FAFC",     // Cool Slate
+            Surface = "#FFFFFF",
+            DrawerBackground = "#FFFFFF",
+            DrawerText = "#0F172A",
             TextPrimary = "#0F172A",
-            ActionDefault = "#475569"
+            TextSecondary = "#64748B",
+            ActionDefault = "#3B82F6",
+            Success = "#10B981",
+            LinesDefault = "#E2E8F0"
+        }
+    };
+
+    // 3. Dark Mode Theme (Modern Enterprise HRMS Dark Console)
+    // Canvas: #0B0F19, Surface: #111827, Accent: Azure #38BDF8
+    private readonly MudTheme _darkHrmsTheme = new MudTheme()
+    {
+        PaletteDark = new PaletteDark()
+        {
+            Primary = "#38BDF8",        // Electric Azure
+            Secondary = "#10B981",
+            AppbarBackground = "#0F172A",
+            Background = "#0B0F19",     // Obsidian Midnight
+            Surface = "#111827",        // Dark Card
+            DrawerBackground = "#111827",
+            DrawerText = "#F8FAFC",
+            TextPrimary = "#F8FAFC",
+            TextSecondary = "#94A3B8",
+            ActionDefault = "#38BDF8",
+            Success = "#34D399",
+            LinesDefault = "#1F2937"
         }
     };
 }
