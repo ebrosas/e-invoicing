@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dAs/hNTxKRpOxQzZ47dqPibgfeyRxYg5ANR/uV8+46s=",
+  "Hash": "JHBWR4976Huser6TF+ymC8PSjINUiWknStf3kN4C/JU=",
   "Source": "EInvoicing.Web",
   "BasePath": "_content/EInvoicing.Web",
   "Mode": "Default",
@@ -9,10 +9,10 @@
   "DiscoveryPatterns": [],
   "Assets": [
     {
-      "Identity": "/root/.nuget/packages/mudblazor/8.8.0/staticwebassets/MudBlazor.min.css",
+      "Identity": "C:\\Users\\ervin\\.nuget\\packages\\mudblazor\\8.8.0\\staticwebassets\\MudBlazor.min.css",
       "SourceId": "MudBlazor",
       "SourceType": "Package",
-      "ContentRoot": "/root/.nuget/packages/mudblazor/8.8.0/staticwebassets/",
+      "ContentRoot": "C:\\Users\\ervin\\.nuget\\packages\\mudblazor\\8.8.0\\staticwebassets\\",
       "BasePath": "_content/MudBlazor",
       "RelativePath": "MudBlazor.min.css",
       "AssetKind": "All",
@@ -25,13 +25,13 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/root/.nuget/packages/mudblazor/8.8.0/staticwebassets/MudBlazor.min.css"
+      "OriginalItemSpec": "C:\\Users\\ervin\\.nuget\\packages\\mudblazor\\8.8.0\\staticwebassets\\MudBlazor.min.css"
     },
     {
-      "Identity": "/root/.nuget/packages/mudblazor/8.8.0/staticwebassets/MudBlazor.min.js",
+      "Identity": "C:\\Users\\ervin\\.nuget\\packages\\mudblazor\\8.8.0\\staticwebassets\\MudBlazor.min.js",
       "SourceId": "MudBlazor",
       "SourceType": "Package",
-      "ContentRoot": "/root/.nuget/packages/mudblazor/8.8.0/staticwebassets/",
+      "ContentRoot": "C:\\Users\\ervin\\.nuget\\packages\\mudblazor\\8.8.0\\staticwebassets\\",
       "BasePath": "_content/MudBlazor",
       "RelativePath": "MudBlazor.min.js",
       "AssetKind": "All",
@@ -44,7 +44,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "/root/.nuget/packages/mudblazor/8.8.0/staticwebassets/MudBlazor.min.js"
+      "OriginalItemSpec": "C:\\Users\\ervin\\.nuget\\packages\\mudblazor\\8.8.0\\staticwebassets\\MudBlazor.min.js"
     }
   ]
 }

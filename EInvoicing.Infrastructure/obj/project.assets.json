@@ -2892,35 +2892,45 @@
     ]
   },
   "packageFolders": {
-    "/root/.nuget/packages/": {}
+    "C:\\Users\\ervin\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/app/applet/EInvoicing.Infrastructure/EInvoicing.Infrastructure.csproj",
+      "projectUniqueName": "C:\\NET Projects\\Repos\\ebrosas\\e-invoicing\\EInvoicing.Infrastructure\\EInvoicing.Infrastructure.csproj",
       "projectName": "EInvoicing.Infrastructure",
-      "projectPath": "/app/applet/EInvoicing.Infrastructure/EInvoicing.Infrastructure.csproj",
-      "packagesPath": "/root/.nuget/packages/",
-      "outputPath": "/app/applet/EInvoicing.Infrastructure/obj/",
+      "projectPath": "C:\\NET Projects\\Repos\\ebrosas\\e-invoicing\\EInvoicing.Infrastructure\\EInvoicing.Infrastructure.csproj",
+      "packagesPath": "C:\\Users\\ervin\\.nuget\\packages\\",
+      "outputPath": "C:\\NET Projects\\Repos\\ebrosas\\e-invoicing\\EInvoicing.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+      ],
       "configFilePaths": [
-        "/root/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\ervin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/app/applet/EInvoicing.Application/EInvoicing.Application.csproj": {
-              "projectPath": "/app/applet/EInvoicing.Application/EInvoicing.Application.csproj"
+            "C:\\NET Projects\\Repos\\ebrosas\\e-invoicing\\EInvoicing.Application\\EInvoicing.Application.csproj": {
+              "projectPath": "C:\\NET Projects\\Repos\\ebrosas\\e-invoicing\\EInvoicing.Application\\EInvoicing.Application.csproj"
             },
-            "/app/applet/EInvoicing.Domain/EInvoicing.Domain.csproj": {
-              "projectPath": "/app/applet/EInvoicing.Domain/EInvoicing.Domain.csproj"
+            "C:\\NET Projects\\Repos\\ebrosas\\e-invoicing\\EInvoicing.Domain\\EInvoicing.Domain.csproj": {
+              "projectPath": "C:\\NET Projects\\Repos\\ebrosas\\e-invoicing\\EInvoicing.Domain\\EInvoicing.Domain.csproj"
             }
           }
         }
@@ -2929,11 +2939,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -2977,7 +2982,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.425/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.117/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

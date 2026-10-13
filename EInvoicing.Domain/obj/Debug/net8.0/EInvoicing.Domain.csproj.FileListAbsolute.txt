@@ -9,3 +9,15 @@
 /app/applet/EInvoicing.Domain/obj/Debug/net8.0/refint/EInvoicing.Domain.dll
 /app/applet/EInvoicing.Domain/obj/Debug/net8.0/EInvoicing.Domain.pdb
 /app/applet/EInvoicing.Domain/obj/Debug/net8.0/ref/EInvoicing.Domain.dll
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Domain\bin\Debug\net8.0\EInvoicing.Domain.deps.json
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Domain\bin\Debug\net8.0\EInvoicing.Domain.dll
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Domain\bin\Debug\net8.0\EInvoicing.Domain.pdb
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Domain\obj\Debug\net8.0\EInvoicing.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Domain\obj\Debug\net8.0\EInvoicing.Domain.AssemblyInfoInputs.cache
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Domain\obj\Debug\net8.0\EInvoicing.Domain.AssemblyInfo.cs
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Domain\obj\Debug\net8.0\EInvoicing.Domain.csproj.CoreCompileInputs.cache
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Domain\obj\Debug\net8.0\EInvoicing.Domain.sourcelink.json
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Domain\obj\Debug\net8.0\EInvoicing.Domain.dll
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Domain\obj\Debug\net8.0\refint\EInvoicing.Domain.dll
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Domain\obj\Debug\net8.0\EInvoicing.Domain.pdb
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Domain\obj\Debug\net8.0\ref\EInvoicing.Domain.dll

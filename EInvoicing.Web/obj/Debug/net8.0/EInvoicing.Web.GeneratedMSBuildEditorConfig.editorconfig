@@ -12,43 +12,43 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = EInvoicing.Web
 build_property.RootNamespace = EInvoicing.Web
-build_property.ProjectDir = /app/applet/EInvoicing.Web/
+build_property.ProjectDir = C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Web\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /app/applet/EInvoicing.Web
+build_property.MSBuildProjectDirectory = C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Web
 build_property._RazorSourceGeneratorDebug = 
 
-[/app/applet/EInvoicing.Web/App.razor]
+[C:/NET Projects/Repos/ebrosas/e-invoicing/EInvoicing.Web/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/app/applet/EInvoicing.Web/Pages/Invoices/InvoiceDetails.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW52b2ljZXMvSW52b2ljZURldGFpbHMucmF6b3I=
+[C:/NET Projects/Repos/ebrosas/e-invoicing/EInvoicing.Web/Pages/Invoices/InvoiceDetails.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW52b2ljZXNcSW52b2ljZURldGFpbHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/app/applet/EInvoicing.Web/Pages/Invoices/InvoiceList.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSW52b2ljZXMvSW52b2ljZUxpc3QucmF6b3I=
+[C:/NET Projects/Repos/ebrosas/e-invoicing/EInvoicing.Web/Pages/Invoices/InvoiceList.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW52b2ljZXNcSW52b2ljZUxpc3QucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/app/applet/EInvoicing.Web/Pages/Settings/CygnetConfig.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvU2V0dGluZ3MvQ3lnbmV0Q29uZmlnLnJhem9y
+[C:/NET Projects/Repos/ebrosas/e-invoicing/EInvoicing.Web/Pages/Settings/CygnetConfig.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2V0dGluZ3NcQ3lnbmV0Q29uZmlnLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/app/applet/EInvoicing.Web/Shared/MainLayout.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL01haW5MYXlvdXQucmF6b3I=
+[C:/NET Projects/Repos/ebrosas/e-invoicing/EInvoicing.Web/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/app/applet/EInvoicing.Web/Shared/NavMenu.razor]
-build_metadata.AdditionalFiles.TargetPath = U2hhcmVkL05hdk1lbnUucmF6b3I=
+[C:/NET Projects/Repos/ebrosas/e-invoicing/EInvoicing.Web/Shared/NavMenu.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE5hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/app/applet/EInvoicing.Web/_Imports.razor]
+[C:/NET Projects/Repos/ebrosas/e-invoicing/EInvoicing.Web/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/app/applet/EInvoicing.Web/Pages/_Host.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvX0hvc3QuY3NodG1s
+[C:/NET Projects/Repos/ebrosas/e-invoicing/EInvoicing.Web/Pages/_Host.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0hvc3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

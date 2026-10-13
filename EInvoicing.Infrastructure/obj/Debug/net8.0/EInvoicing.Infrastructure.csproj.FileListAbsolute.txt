@@ -15,3 +15,21 @@
 /app/applet/EInvoicing.Infrastructure/obj/Debug/net8.0/refint/EInvoicing.Infrastructure.dll
 /app/applet/EInvoicing.Infrastructure/obj/Debug/net8.0/EInvoicing.Infrastructure.pdb
 /app/applet/EInvoicing.Infrastructure/obj/Debug/net8.0/ref/EInvoicing.Infrastructure.dll
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Infrastructure\bin\Debug\net8.0\EInvoicing.Infrastructure.deps.json
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Infrastructure\bin\Debug\net8.0\EInvoicing.Infrastructure.dll
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Infrastructure\bin\Debug\net8.0\EInvoicing.Infrastructure.pdb
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Infrastructure\bin\Debug\net8.0\EInvoicing.Application.dll
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Infrastructure\bin\Debug\net8.0\EInvoicing.Domain.dll
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Infrastructure\bin\Debug\net8.0\EInvoicing.Domain.pdb
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Infrastructure\bin\Debug\net8.0\EInvoicing.Application.pdb
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Infrastructure\obj\Debug\net8.0\EInvoicing.Infrastructure.csproj.AssemblyReference.cache
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Infrastructure\obj\Debug\net8.0\EInvoicing.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Infrastructure\obj\Debug\net8.0\EInvoicing.Infrastructure.AssemblyInfoInputs.cache
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Infrastructure\obj\Debug\net8.0\EInvoicing.Infrastructure.AssemblyInfo.cs
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Infrastructure\obj\Debug\net8.0\EInvoicing.Infrastructure.csproj.CoreCompileInputs.cache
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Infrastructure\obj\Debug\net8.0\EInvoicing.Infrastructure.sourcelink.json
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Infrastructure\obj\Debug\net8.0\EInvoicing.Infrastructure.csproj.CopyComplete
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Infrastructure\obj\Debug\net8.0\EInvoicing.Infrastructure.dll
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Infrastructure\obj\Debug\net8.0\refint\EInvoicing.Infrastructure.dll
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Infrastructure\obj\Debug\net8.0\EInvoicing.Infrastructure.pdb
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Infrastructure\obj\Debug\net8.0\ref\EInvoicing.Infrastructure.dll

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "/pl4Y1vT5XQ=",
+  "dgSpecHash": "wFdiV9ySfSmTLWYtPPgR6LC8rmCrIUHPF+rt6FlSTC1esHDBYuz90KUSpY+6uo9K3lQQWtOBedtzX5VnuJf7Ew==",
   "success": true,
-  "projectFilePath": "/app/applet/EInvoicing.Domain/EInvoicing.Domain.csproj",
+  "projectFilePath": "C:\\NET Projects\\Repos\\ebrosas\\e-invoicing\\EInvoicing.Domain\\EInvoicing.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

@@ -18,10 +18,7 @@
       "System.Text.Json/8.0.5": {},
       "EInvoicing.Domain/1.0.0": {
         "runtime": {
-          "EInvoicing.Domain.dll": {
-            "assemblyVersion": "1.0.0",
-            "fileVersion": "1.0.0.0"
-          }
+          "EInvoicing.Domain.dll": {}
         }
       }
     }

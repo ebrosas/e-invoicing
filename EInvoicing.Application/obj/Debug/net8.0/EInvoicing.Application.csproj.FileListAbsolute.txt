@@ -13,3 +13,19 @@
 /app/applet/EInvoicing.Application/obj/Debug/net8.0/refint/EInvoicing.Application.dll
 /app/applet/EInvoicing.Application/obj/Debug/net8.0/EInvoicing.Application.pdb
 /app/applet/EInvoicing.Application/obj/Debug/net8.0/ref/EInvoicing.Application.dll
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Application\bin\Debug\net8.0\EInvoicing.Application.deps.json
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Application\bin\Debug\net8.0\EInvoicing.Application.dll
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Application\bin\Debug\net8.0\EInvoicing.Application.pdb
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Application\bin\Debug\net8.0\EInvoicing.Domain.dll
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Application\bin\Debug\net8.0\EInvoicing.Domain.pdb
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Application\obj\Debug\net8.0\EInvoicing.Application.csproj.AssemblyReference.cache
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Application\obj\Debug\net8.0\EInvoicing.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Application\obj\Debug\net8.0\EInvoicing.Application.AssemblyInfoInputs.cache
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Application\obj\Debug\net8.0\EInvoicing.Application.AssemblyInfo.cs
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Application\obj\Debug\net8.0\EInvoicing.Application.csproj.CoreCompileInputs.cache
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Application\obj\Debug\net8.0\EInvoicing.Application.sourcelink.json
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Application\obj\Debug\net8.0\EInvoicing.Application.csproj.CopyComplete
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Application\obj\Debug\net8.0\EInvoicing.Application.dll
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Application\obj\Debug\net8.0\refint\EInvoicing.Application.dll
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Application\obj\Debug\net8.0\EInvoicing.Application.pdb
+C:\NET Projects\Repos\ebrosas\e-invoicing\EInvoicing.Application\obj\Debug\net8.0\ref\EInvoicing.Application.dll

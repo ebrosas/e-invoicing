@@ -1,25 +1,33 @@
 {
   "format": 1,
   "restore": {
-    "/app/applet/EInvoicing.Domain/EInvoicing.Domain.csproj": {}
+    "C:\\NET Projects\\Repos\\ebrosas\\e-invoicing\\EInvoicing.Domain\\EInvoicing.Domain.csproj": {}
   },
   "projects": {
-    "/app/applet/EInvoicing.Domain/EInvoicing.Domain.csproj": {
+    "C:\\NET Projects\\Repos\\ebrosas\\e-invoicing\\EInvoicing.Domain\\EInvoicing.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/app/applet/EInvoicing.Domain/EInvoicing.Domain.csproj",
+        "projectUniqueName": "C:\\NET Projects\\Repos\\ebrosas\\e-invoicing\\EInvoicing.Domain\\EInvoicing.Domain.csproj",
         "projectName": "EInvoicing.Domain",
-        "projectPath": "/app/applet/EInvoicing.Domain/EInvoicing.Domain.csproj",
-        "packagesPath": "/root/.nuget/packages/",
-        "outputPath": "/app/applet/EInvoicing.Domain/obj/",
+        "projectPath": "C:\\NET Projects\\Repos\\ebrosas\\e-invoicing\\EInvoicing.Domain\\EInvoicing.Domain.csproj",
+        "packagesPath": "C:\\Users\\ervin\\.nuget\\packages\\",
+        "outputPath": "C:\\NET Projects\\Repos\\ebrosas\\e-invoicing\\EInvoicing.Domain\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "/root/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\ervin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -32,11 +40,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -58,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.425/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.117/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

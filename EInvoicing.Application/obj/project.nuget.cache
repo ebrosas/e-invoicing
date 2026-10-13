@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "wo55yNj7lr0=",
+  "dgSpecHash": "KNzOYBMroLxvsgTzPyWqUH1wv30JLz75LpDnQkLQe8jo8wegH/WCBzW/AJ5wGsikZtHmD/QoIwQ5Wto3d0hRvg==",
   "success": true,
-  "projectFilePath": "/app/applet/EInvoicing.Application/EInvoicing.Application.csproj",
+  "projectFilePath": "C:\\NET Projects\\Repos\\ebrosas\\e-invoicing\\EInvoicing.Application\\EInvoicing.Application.csproj",
   "expectedPackageFiles": [
-    "/root/.nuget/packages/system.text.json/8.0.5/system.text.json.8.0.5.nupkg.sha512"
+    "C:\\Users\\ervin\\.nuget\\packages\\system.text.json\\8.0.5\\system.text.json.8.0.5.nupkg.sha512"
   ],
   "logs": []
 }
