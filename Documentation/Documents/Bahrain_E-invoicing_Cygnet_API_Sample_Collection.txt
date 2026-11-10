@@ -1,0 +1,203 @@
+{
+  "info": {
+    "_postman_id": "edc5b8f4-a4fd-4ccf-9bf2-ed6b956717f7",
+    "name": "Bahrain E-invoicing Copy",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "38174435",
+    "_collection_link": "https://go.postman.co/collection/38174435-edc5b8f4-a4fd-4ccf-9bf2-ed6b956717f7?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Auth-token Copy",
+      "item": [
+        {
+          "name": "Authentication Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "client-id",
+                "value": "A0ApNdQLDjnVmxlkxJtgn5dd0o2SIGAVK497YXetsrs=",
+                "type": "text"
+              },
+              {
+                "key": "client-secret",
+                "value": "A4DANkVZqprn/+l8cL7UucH/JVqtZUGtO9faXR7r5uF76sRwPm5PUg9aU+fkHWTHKeJMyXi4k1V8L+nyaEP2xw==",
+                "type": "text"
+              },
+              {
+                "key": "content-type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"forceRefresh\": false,\r\n  \"username\": \"parth.patel2\",\r\n  \"password\": \"Need to set the password from UI\"\r\n}\r\n",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://staging-uae-api-cygnettaxglobaleinvoicing.cygnet.one/enriched/v0.1/authenticate/token",
+              "protocol": "https",
+              "host": [
+                "staging-uae-api-cygnettaxglobaleinvoicing",
+                "cygnet",
+                "one"
+              ],
+              "path": [
+                "enriched",
+                "v0.1",
+                "authenticate",
+                "token"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Import Copy",
+      "item": [
+        {
+          "name": "Save Document",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "bodyData = JSON.parse(responseBody)\r",
+                  "console.log(bodyData)\r",
+                  "value=bodyData.referenceId\r",
+                  "console.log(value)\r",
+                  "pm.globals.set(\"referenceId\", value);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "auth-token",
+                "value": "be9657f8aa66b8a9fc40c1d3c12a719f61f4d2e70aa5ee36edd30285db54c968",
+                "type": "text"
+              },
+              {
+                "key": "content-type",
+                "value": "application/json",
+                "type": "text"
+              },
+              {
+                "key": "",
+                "value": "",
+                "type": "text",
+                "disabled": true
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"data\": [\r\n        {\r\n            \"Country\": \"BH\",\r\n            \"EntityTaxRegNo\": \"229999999100002\",\r\n            \"EntityTin\": \"2299999991\",\r\n            \"EntityName\": \"Bahrain Testing child-1\",\r\n            \"BranchId\": null,\r\n            \"ReturnPeriod\": \"092026\",\r\n            \"Purpose\": \"EINV\",\r\n            \"AutoPushOrGenerate\": \"EINV\",\r\n            \"SupplyType\": \"S\",\r\n            \"DocumentType\": \"INV\",\r\n            \"DocumentTypePurpose\": \"388\",\r\n            \"TransactionType\": \"NOR\",\r\n            \"TransactionTypeCode\": \"0100000000\",\r\n            \"RegistrationType\": null,\r\n            \"DocumentSeriesCode\": null,\r\n            \"DocumentUuid\": null,\r\n            \"BillFromAdditionalUuid\": null,\r\n            \"TransactionUuid\": null,\r\n            \"DocumentNumber\": \"Valay-API-11\",\r\n            \"TraderDocumentNumber\": null,\r\n            \"DocumentDate\": \"2026-09-23 10:10:15\",\r\n            \"DocumentNotes\": \"Invoice for laptop accessories\",\r\n            \"RefundDate\": null,\r\n            \"WarehousingDate\": null,\r\n            \"TaxPointDate\": null,\r\n            \"TaxPointDateCode\": null,\r\n            \"DocumentCurrency\": \"BHD\",\r\n            \"InvoiceAdjustmentReason\": null,\r\n            \"LPONumber\": null,\r\n            \"RebateInvoice\": null,\r\n            \"ExchangeRate\": \"1.20\",\r\n            \"BuyerDocumentAccountingRef\": null,\r\n            \"BuyerDocumentRef\": null,\r\n            \"DocumentPeriodStartDate\": \"2026-08-26 10:10:15\",\r\n            \"DocumentPeriodEndDate\": \"2026-08-27 10:10:15\",\r\n            \"PurchaseOrderNumber\": \"PO-DOC-INV-1005\",\r\n            \"SalesOrderNumber\": \"SO-DOC-INV-1005\",\r\n            \"DocumentReferenceDetails\": null,\r\n            \"NoteReason\": null,\r\n            \"DespatchDocumentReference\": null,\r\n            \"ReceiptDocumentReference\": null,\r\n            \"CustomDocumentReference\": null,\r\n            \"TenderDocumentReference\": null,\r\n            \"ContractDocumentReference\": \"Cont-DOC-INV-1005\",\r\n            \"ContractDocumentValue\": null,\r\n            \"QuotationDocumentReference\": null,\r\n            \"OrderDocumentReference\": null,\r\n            \"OriginatorDocumentReference\": null,\r\n            \"CatalogueDocumentReference\": null,\r\n            \"ProjectReference\": null,\r\n            \"AdditionalDocumentRefDetails\": [],\r\n            \"BillFromTaxRegNo\": \"229999999100002\",\r\n            \"BillFromBranchId\": null,\r\n            \"BillFromLegalRegNo\": null,\r\n            \"BillFromLegalAgency\": null,\r\n            \"BillFromLegalName\": \"UAE_NEW1\",\r\n            \"BillFromTradeName\": \"Cygnet AE Trade Name\",\r\n            \"BillFromRegionalName\": null,\r\n            \"BillFromEndpoint\": \"0235:july18\",\r\n            \"BillFromBankAssignedId\": [\r\n                {\r\n                    \"Scheme\": \"OTH\",\r\n                    \"Id\": \"1008193102\"\r\n                }\r\n            ],\r\n            \"BillFromBuildingNumber\": null,\r\n            \"BillFromAdditionalNumber\": null,\r\n            \"BillFromStreetName\": \"Road 123\",\r\n            \"BillFromAdditionalStreetName\": \"Block 10\",\r\n            \"BillFromShopNumber\": \"1\",\r\n            \"BillFromCity\": \"Manama\",\r\n            \"BillFromPostCode\": \"10001\",\r\n            \"BillFromSellerContactName\": null,\r\n            \"BillFromSellerContactTelNumber\": null,\r\n            \"BillFromAdditionalAddress\": \"Building 20\",\r\n            \"BillFromCountrySubdivision\": \"CAP\",\r\n            \"BillFromCountrySubdivisionCode\": null,\r\n            \"BillFromDistrict\": null,\r\n            \"BillFromCountry\": \"BH\",\r\n            \"BillFromAdditionalLegalInfo\": null,\r\n            \"BillFromContactName\": null,\r\n            \"BillFromContactTelNumber\": null,\r\n            \"BillFromContactEmailAddress\": null,\r\n            \"BillFromJointParticipantTaxRegNo\": null,\r\n            \"BillFromJointParticipantLegalRegNo\": null,\r\n            \"BillFromShareParticipation\": null,\r\n            \"BillFromBankName\": null,\r\n            \"BillFromBankCode\": null,\r\n            \"BillFromBankAccountNumber\": null,\r\n            \"BillFromBankTypeCode\": null,\r\n            \"BillFromAgentTaxRegNo\": null,\r\n            \"BillFromAgentName\": null,\r\n            \"BillFromAgentLegalName\": null,\r\n            \"BillFromAgentTradeName\": null,\r\n            \"BillFromAgentEndpoint\": null,\r\n            \"BillFromAgentStreetName\": null,\r\n            \"BillFromAgentAdditionalStreetName\": null,\r\n            \"BillFromAgentCity\": null,\r\n            \"BillFromAgentPostCode\": null,\r\n            \"BillFromAgentCountrySubdivision\": null,\r\n            \"BillFromAgentCountry\": null,\r\n            \"BillFromAgentContactName\": null,\r\n            \"BillFromAgentContactTelNumber\": null,\r\n            \"BillFromAgentContactEmailAddress\": null,\r\n            \"BillFromAgentAddress\": null,\r\n            \"BillFromAgentDocDate\": null,\r\n            \"BillFromAgentDocReference\": null,\r\n            \"BillFromRegStatus\": null,\r\n            \"PartyBillFromTaxRegNo\": \"200012345678574\",\r\n            \"PartyBillFromIdentifier\": null,\r\n            \"PartyBillFromLegalName\": null,\r\n            \"PartyBillFromLegalRegNo\": null,\r\n            \"PartyBillFromLegalRegCity\": null,\r\n            \"PartyBillFromLegalRegCountry\": null,\r\n            \"PartyBillFromTradeName\": \"TradeName\",\r\n            \"PartyBillFromEndpoint\": null,\r\n            \"PartyBillFromBankAssignedId\": [\r\n                {\r\n                    \"Scheme\": \"TIN\",\r\n                    \"Id\": \"2008193102\"\r\n                }\r\n            ],\r\n            \"PartyBillFromStreetName\": \"Road 789\",\r\n            \"PartyBillFromBlockName\": \"Block 1\",\r\n            \"PartyBillFromBuildingName\": \"Building 1\",\r\n            \"PartyBillFromShopNumber\": \"2\",\r\n            \"PartyBillFromAddStreetName\": null,\r\n            \"PartyBillFromCity\": \"Manama\",\r\n            \"PartyBillFromPostCode\": \"10002\",\r\n            \"PartyBillFromAdditionalAddress\": null,\r\n            \"PartyBillFromCountrySubdiv\": \"CAP\",\r\n            \"PartyBillFromCountrySubdivCode\": null,\r\n            \"PartyBillFromCountry\": \"BH\",\r\n            \"PartyBillFromContactName\": null,\r\n            \"PartyBillFromContactTelNumber\": null,\r\n            \"PartyBillFromContactEmailAddr\": null,\r\n            \"BillFromTaxRepTaxRegNo\": null,\r\n            \"BillFromTaxRepName\": null,\r\n            \"BillFromTaxRepBuildingNo\": null,\r\n            \"BillFromTaxRepAdditionalNo\": null,\r\n            \"BillFromTaxRepStreetName\": null,\r\n            \"BillFromTaxRepAddStreetName\": null,\r\n            \"BillFromTaxRepCity\": null,\r\n            \"BillFromTaxRepPostCode\": null,\r\n            \"BillFromTaxRepAddAddress\": null,\r\n            \"BillFromTaxRepCountrySubdiv\": null,\r\n            \"BillFromTaxRepDistrict\": null,\r\n            \"BillFromTaxRepCountry\": null,\r\n            \"BillFromAuthorisationNumber\": null,\r\n            \"BillFromBuildingName\": null,\r\n            \"BillFromIndClassCode\": null,\r\n            \"BillFromInvoiceNo\": null,\r\n            \"BillFromBankAddress\": null,\r\n            \"BillFromBankAccountIban\": null,\r\n            \"ShipToAddSchIdDetails\": [],\r\n            \"BillToAddSchIdDetails\": [],\r\n            \"BillFromAddSchIdDetails\": [],\r\n            \"BillFromRoutingDetails\": [],\r\n            \"BillToRoutingDetails\": [],\r\n            \"BillToTaxRegNo\": \"200012345678573\",\r\n            \"BillToBranchId\": null,\r\n            \"BillToLegalRegNo\": null,\r\n            \"BillToLegalAgency\": null,\r\n            \"BillToLegalName\": \"UAE_New\",\r\n            \"BillToLegalRegCity\": null,\r\n            \"BillToLegalRegCountry\": null,\r\n            \"BillToTradeName\": \"trade 1\",\r\n            \"BillToEndpoint\": \"0235:18july\",\r\n            \"BillToIdentifier\": \"OTH-Test\",\r\n            \"BillToBuildingNumber\": null,\r\n            \"BillToAdditionalNumber\": null,\r\n            \"BillToStreetName\": \"Road 456\",\r\n            \"BillToAdditionalStreetName\": \"Block 20\",\r\n            \"BillToShopNumber\": \"111\",\r\n            \"BillToCity\": \"Manama\",\r\n            \"BillToPostCode\": \"10003\",\r\n            \"BillToAdditionalAddress\": \"Building 30\",\r\n            \"BillToCountrySubdivisionCode\": null,\r\n            \"BillToCountrySubdivision\": \"CAP\",\r\n            \"BillToDistrict\": null,\r\n            \"BillToCountry\": \"BH\",\r\n            \"BillToTinPin\": null,\r\n            \"BillToAdditionalLegalInfo\": null,\r\n            \"BillToContactName\": null,\r\n            \"BillToContactTelNumber\": null,\r\n            \"BillToContactEmailAddress\": null,\r\n            \"BillToJointParticipantTaxRegNo\": null,\r\n            \"BillToJointParticipantLegalRegNo\": null,\r\n            \"BillToShareParticipation\": null,\r\n            \"BillToAgentTaxRegNo\": null,\r\n            \"BillToAgentName\": null,\r\n            \"BillToAgentLegalName\": null,\r\n            \"BillToAgentTradeName\": null,\r\n            \"BillToAgentEndpoint\": null,\r\n            \"BillToAgentStreetName\": null,\r\n            \"BillToAgentAdditionalStreetName\": null,\r\n            \"BillToAgentCity\": null,\r\n            \"BillToAgentPostCode\": null,\r\n            \"BillToAgentCountrySubdivision\": null,\r\n            \"BillToAgentCountry\": null,\r\n            \"BillToAgentContactName\": null,\r\n            \"BillToAgentContactTelNumber\": null,\r\n            \"BillToAgentContactEmailAddress\": null,\r\n            \"BillToAgentAddress\": null,\r\n            \"BillToAgentDocDate\": null,\r\n            \"BillToAgentDocReference\": null,\r\n            \"BillToRegStatus\": null,\r\n            \"PrincipalId\": null,\r\n            \"PartyBillToTaxRegNo\": null,\r\n            \"PartyBillToLegalName\": null,\r\n            \"PartyBillToLegalRegNo\": null,\r\n            \"PartyBillToLegalRegCity\": null,\r\n            \"PartyBillToLegalRegCountry\": null,\r\n            \"PartyBillToTradeName\": null,\r\n            \"PartyBillToEndpoint\": null,\r\n            \"PartyBillToIdentifier\": null,\r\n            \"PartyBillToStreetName\": null,\r\n            \"PartyBillToAddStreetName\": null,\r\n            \"PartyBillToCity\": null,\r\n            \"PartyBillToPostCode\": null,\r\n            \"PartyBillToAdditionalAddress\": null,\r\n            \"PartyBillToCountrySubdivision\": null,\r\n            \"PartyBillToCountry\": null,\r\n            \"PartyBillToContactName\": null,\r\n            \"PartyBillToContactTelNumber\": null,\r\n            \"PartyBillToContactEmailAddress\": null,\r\n            \"OrigBillToIdentifier\": null,\r\n            \"OrigBillToTradeName\": null,\r\n            \"OrigBillToContactName\": null,\r\n            \"OrigBillToContactTelNumber\": null,\r\n            \"OrigBillToContactEmailAddress\": null,\r\n            \"OriginalBranchId\": null,\r\n            \"StatusCode\": null,\r\n            \"BillToAuthorisationNumber\": null,\r\n            \"BillToBuildingName\": null,\r\n            \"PayeeLegalRegNo\": null,\r\n            \"PayeeBankAssignedIdentifier\": null,\r\n            \"PayeePartyName\": null,\r\n            \"DocumentResCode\": null,\r\n            \"DocumentResEffectiveDate\": null,\r\n            \"DocumentResReasonCode\": null,\r\n            \"DocumentResConditionID\": null,\r\n            \"DocumentResConditionDetail\": null,\r\n            \"PaymentDueDate\": \"2026-09-25\",\r\n            \"PaymentTerms\": null,\r\n            \"PaymentTermDetails\": [\r\n                {\r\n                    \"Id\": \"jhasd7e\",\r\n                    \"Note\": \"Payment due within agreed payment terms\",\r\n                    \"Amount\": \"105\",\r\n                    \"DueDate\": \"2026-08-27\",\r\n                    \"SettlementDays\": null,\r\n                    \"SurchargePercentage\": null,\r\n                    \"DiscountPercentage\": null\r\n                }\r\n            ],\r\n            \"PaymentDetails\": [\r\n                {\r\n                    \"PaymentInstrId\": null,\r\n                    \"PaymentMode\": \"10\",\r\n                    \"PaymentId\": null,\r\n                    \"PaymentRemittanceId\": null,\r\n                    \"PaymentIdSch\": null,\r\n                    \"PaymentDueDate\": null,\r\n                    \"CardPrimaryAccNumber\": null,\r\n                    \"CardNetworkId\": null,\r\n                    \"CardHolderName\": null,\r\n                    \"CreditPaymentAccNumber\": \"c1\",\r\n                    \"CreditPaymentAccNumberSch\": \"cn1\",\r\n                    \"CreditPaymentAccHolderName\": \"acc1\",\r\n                    \"PayeeFinancialInstitutionId\": \"ins1\",\r\n                    \"PayeeBranchStreetName\": null,\r\n                    \"PayeeBranchAddStreetName\": null,\r\n                    \"PayeeBranchCity\": null,\r\n                    \"PayeeBranchPostCode\": null,\r\n                    \"PayeeBranchAddAddress\": null,\r\n                    \"PayeeBranchSubDivision\": null,\r\n                    \"PayeeBranchCountry\": null,\r\n                    \"DdMandateReferenceId\": null,\r\n                    \"DdPayerAccountId\": null,\r\n                    \"Amount\": null,\r\n                    \"RefNumber\": null,\r\n                    \"IsPrepayment\": null,\r\n                    \"Date\": null,\r\n                    \"Type\": null,\r\n                    \"PaymentInstructionNote\": null,\r\n                    \"PayeePartyTradeName\": null,\r\n                    \"PayeePartyAdditionalLegalInfo\": null,\r\n                    \"PayeePartyStreetName\": null,\r\n                    \"PayeePartyAdditionalStreetName\": null,\r\n                    \"PayeePartyCity\": null,\r\n                    \"PayeePartyPostCode\": null,\r\n                    \"PayeePartyContactName\": null,\r\n                    \"PayeePartyContactEmailAddress\": null,\r\n                    \"PayeePartyContactTelNumber\": null,\r\n                    \"PayeePartyCountrySubdivision\": null,\r\n                    \"PayeePartyCountry\": null,\r\n                    \"PayeePartyAddSchIdDetails\": null,\r\n                    \"AccountNumber\": null,\r\n                    \"SepaCreditorReference\": null,\r\n                    \"PartyPayerTradeName\": null,\r\n                    \"PartyPayerAdditionalLegalInfo\": null,\r\n                    \"PartyPayerStreetName\": null,\r\n                    \"PartyPayerAdditionalStreetName\": null,\r\n                    \"PartyPayerCity\": null,\r\n                    \"PartyPayerPostCode\": null,\r\n                    \"PartyPayerCountrySubdivision\": null,\r\n                    \"PartyPayerCountry\": null,\r\n                    \"PartyPayerContactName\": null,\r\n                    \"PartyPayerContactEmailAddress\": null,\r\n                    \"PartyPayerContactTelNumber\": null,\r\n                    \"DocumentNumber\": null,\r\n                    \"DocumentUuid\": null\r\n                }\r\n            ],\r\n            \"PrepaymentDetails\": [],\r\n            \"PaymentReportDetails\": [],\r\n            \"DeliveryDate\": \"2026-08-26 10:10:15\",\r\n            \"DeliveryPeriodStartDate\": null,\r\n            \"DeliveryPeriodEndDate\": null,\r\n            \"DeliveryTerms\": null,\r\n            \"DeliverySpecialTerms\": null,\r\n            \"DeliveryLocationID\": null,\r\n            \"DeliveryQuantity\": null,\r\n            \"ShipToPartyName\": null,\r\n            \"ShipToTaxRegNo\": null,\r\n            \"ShipToLegalRegNo\": null,\r\n            \"ShipToLegalName\": null,\r\n            \"ShipToLocation\": null,\r\n            \"ShipToLocationName\": null,\r\n            \"ShipToBuildingNumber\": null,\r\n            \"ShipToAdditionalNumber\": null,\r\n            \"ShipToStreetName\": null,\r\n            \"ShipToAdditionalStreetName\": null,\r\n            \"ShipToCity\": null,\r\n            \"ShipToPostCode\": null,\r\n            \"ShipToAdditionalAddress\": null,\r\n            \"ShipToCountrySubdivision\": null,\r\n            \"ShipToDistrict\": null,\r\n            \"ShipToCountry\": null,\r\n            \"ShipToDeliveryLocationId\": null,\r\n            \"ShipToName\": null,\r\n            \"ShipmentDeliveryDate\": null,\r\n            \"ShipToIdentifier\": null,\r\n            \"PartyShipToName\": null,\r\n            \"PartyShipToIdentifier\": null,\r\n            \"PartyShipToStreetName\": null,\r\n            \"PartyShipToAddStreetName\": null,\r\n            \"PartyShipToCity\": null,\r\n            \"PartyShipToPostCode\": null,\r\n            \"PartyShipToAdditionalAddress\": null,\r\n            \"PartyShipToCountrySubdivision\": null,\r\n            \"PartyShipToCountry\": null,\r\n            \"PartyShipToContactName\": null,\r\n            \"PartyShipToContactTelNumber\": null,\r\n            \"PartyShipToContactEmailAddress\": null,\r\n            \"PartyShipToLegalName\": null,\r\n            \"PartyShipToTradeName\": null,\r\n            \"PartyShipToContactId\": null,\r\n            \"PartyShipToAddSchIdDetails\": [],\r\n            \"ShipmentID\": null,\r\n            \"ShipmentPriority\": null,\r\n            \"ShipmentCountry\": null,\r\n            \"ShipmentAllowanceCharges\": [],\r\n            \"ShippingMarks\": null,\r\n            \"ShipToAuthorisationNumber\": null,\r\n            \"ShipToBuildingName\": null,\r\n            \"ValidatedDate\": null,\r\n            \"StockReleasedDate\": null,\r\n            \"CancelRequestedDate\": null,\r\n            \"CancelledDate\": null,\r\n            \"PurchaseAccept\": null,\r\n            \"DocumentAllowanceDetails\": null,\r\n            \"DocumentAllowanceType\": null,\r\n            \"DocumentChargeDetails\": null,\r\n            \"RegistrationId\": null,\r\n            \"RegistrationName\": null,\r\n            \"ModifierId\": null,\r\n            \"ModifierName\": null,\r\n            \"CurrencyCodeOfAccCurrency\": null,\r\n            \"TotalTaxableAmountInAccCurrency\": null,\r\n            \"TotalTaxAmountInAccCurrency\": \"5\",\r\n            \"TotalDocAmountInAccCurrency\": \"126\",\r\n            \"TotalDocumentAmount\": \"105\",\r\n            \"TotalTaxableAmount\": null,\r\n            \"TotalTaxAmount\": null,\r\n            \"CustomerTypeCode\": null,\r\n            \"NonResidentType\": null,\r\n            \"PermenantResidenceAddress\": null,\r\n            \"PermenantResidenceCountry\": null,\r\n            \"OriginCountry\": null,\r\n            \"CountriesToVisit\": null,\r\n            \"CountriesVisited\": null,\r\n            \"TourPackagesName\": null,\r\n            \"TravelPurposeCode\": null,\r\n            \"ReceiptBillToTaxRegNo\": null,\r\n            \"ReceiptBillToContactTelNo\": null,\r\n            \"ReceiptNumber\": null,\r\n            \"ReceiptPublishedDate\": null,\r\n            \"ReceiptBillToTradeName\": null,\r\n            \"ReceiptBillToBuildingNumber\": null,\r\n            \"ReceiptBillToStreetName\": null,\r\n            \"ReceiptBillToCity\": null,\r\n            \"ReceiptBillToPostCode\": null,\r\n            \"ReceiptBillToCountrySubdiv\": null,\r\n            \"ReceiptBillToCountry\": null,\r\n            \"ReceiptTopMessage\": null,\r\n            \"ReceiptBottomMessage\": null,\r\n            \"ReceiptPurchaseAccept\": null,\r\n            \"PrepaidAmount\": \"0\",\r\n            \"RoundingAmount\": \"0\",\r\n            \"PaymentAmountDue\": \"105\",\r\n            \"Custom1\": \"Custom value 1\",\r\n            \"Custom2\": \"Custom value 2\",\r\n            \"Custom3\": \"Custom value 3\",\r\n            \"Custom4\": \"Custom value 4\",\r\n            \"Custom5\": \"Custom value 5\",\r\n            \"Custom6\": \"Custom value 6\",\r\n            \"Custom7\": \"Custom value 7\",\r\n            \"Custom8\": \"Custom value 8\",\r\n            \"Custom9\": \"Custom value 9\",\r\n            \"Custom10\": \"Custom value 10\",\r\n            \"DocumentFrequency\": null,\r\n            \"CommercialInvoiceNumber\": null,\r\n            \"OrderResponseCode\": null,\r\n            \"SequenceNumberId\": null,\r\n            \"CancellationNotes\": null,\r\n            \"OrderDocumentReferenceDate\": null,\r\n            \"OrderChangeDocumentReference\": null,\r\n            \"DespatchDate\": null,\r\n            \"DeliveryDocumentReference\": null,\r\n            \"HasContract\": null,\r\n            \"ContractDocumentDate\": null,\r\n            \"CertificateNumber\": null,\r\n            \"CertificateSeries\": null,\r\n            \"AccountingReference\": null,\r\n            \"ShippingMethod\": null,\r\n            \"WarrantDocumentReference\": null,\r\n            \"WarrantDate\": null,\r\n            \"DocumentTurnoverDate\": null,\r\n            \"PaperInvoiceDate\": null,\r\n            \"ReasonPaperInvoice\": null,\r\n            \"DocumentTaxType\": null,\r\n            \"TotalExciseAmount\": null,\r\n            \"TotalSupplyAmount\": null,\r\n            \"VatCategoryWiseTotal\": [\r\n                {\r\n                    \"VatCategoryTaxableAmount\": \"100\",\r\n                    \"VatCategoryTaxAmount\": \"5\",\r\n                    \"VatCategoryCode\": \"S\",\r\n                    \"VatCategoryRate\": \"5\",\r\n                    \"VATExemptionReason\": null,\r\n                    \"TaxAmountInAccCurrency\": null\r\n                }\r\n            ],\r\n            \"TotalLineNetAmount\": \"100\",\r\n            \"TotalDocumentAllowance\": \"0\",\r\n            \"TotalDocumentCharge\": \"0\",\r\n            \"InvoiceTotalAmountWithoutTax\": \"100\",\r\n            \"InvoiceTotalTaxAmount\": \"5\",\r\n            \"FTAId\": null,\r\n            \"FTADocumentDescription\": null,\r\n            \"CustomsRefForm2\": null,\r\n            \"CertifiedExporterAuthNo\": null,\r\n            \"ShipToLegalRegScheme\": null,\r\n            \"ConsignmentNumber\": null,\r\n            \"ShippingChargesReason\": null,\r\n            \"ShippingChargesAmount\": null,\r\n            \"SourceCurrencyCode\": null,\r\n            \"TargetCurrencyCode\": null,\r\n            \"ShipmentStreetName\": null,\r\n            \"ShipmentAdditionalStreetName\": null,\r\n            \"ShipmentCity\": null,\r\n            \"ShipmentPostCode\": null,\r\n            \"ShipmentCountrySubdivision\": null,\r\n            \"PurchaseOrderDescription\": null,\r\n            \"OrderDocumentDescription\": null,\r\n            \"ProformaInvoiceNumber\": null,\r\n            \"GrossWeight\": null,\r\n            \"NetWeight\": null,\r\n            \"ShippingPackageType\": null,\r\n            \"ShipmentPortCode\": null,\r\n            \"TotalAllowanceAmount\": null,\r\n            \"TotalUnitAllowanceAmount\": null,\r\n            \"Items\": [\r\n                {\r\n                    \"SerialNumber\": \"1\",\r\n                    \"ProductCode\": null,\r\n                    \"Name\": \"Laptop\",\r\n                    \"Description\": \"Laptop accessories\",\r\n                    \"InvoicedQuantity\": \"1\",\r\n                    \"InvoicedQuantityUnitCode\": \"C62\",\r\n                    \"UnitPrice\": \"110\",\r\n                    \"RecommendedRetailPrice\": null,\r\n                    \"UnitAllowanceAmount\": \"10\",\r\n                    \"NetUnitPrice\": \"100\",\r\n                    \"UnitPriceInclusiveTax\": null,\r\n                    \"PriceBaseQuantity\": null,\r\n                    \"AllowanceDetails\": null,\r\n                    \"ChargeDetails\": null,\r\n                    \"LineReferenceDetails\": null,\r\n                    \"AdditionalTaxAmount1\": null,\r\n                    \"AdditionalTaxAmount2\": null,\r\n                    \"AdditionalTaxAmount3\": null,\r\n                    \"AdditionalTaxAmount4\": null,\r\n                    \"AdditionalTaxAmount5\": null,\r\n                    \"TaxCategoryCode\": \"S\",\r\n                    \"AdditionalTaxCategoryCode1\": null,\r\n                    \"AdditionalTaxCategoryCode2\": null,\r\n                    \"AdditionalTaxCategoryCode3\": null,\r\n                    \"AdditionalTaxCategoryCode4\": null,\r\n                    \"AdditionalTaxCategoryCode5\": null,\r\n                    \"TaxTypeCategory\": null,\r\n                    \"TaxRate\": \"5\",\r\n                    \"TaxExemptionReasonCode\": null,\r\n                    \"TaxExemptionReason\": null,\r\n                    \"BaseTaxableAmount\": null,\r\n                    \"TaxableAmount\": \"100\",\r\n                    \"TaxAmount\": \"5\",\r\n                    \"TaxAmountPerUnit\": \"5\",\r\n                    \"CountryOfOrigin\": null,\r\n                    \"PeriodStartDate\": null,\r\n                    \"PeriodEndDate\": null,\r\n                    \"BuyerIdentification\": null,\r\n                    \"SellerIdentification\": null,\r\n                    \"ManufacturerIdentification\": null,\r\n                    \"IndustrialClassCode\": null,\r\n                    \"StandardIdentification\": null,\r\n                    \"AdditionalItemIdentification\": null,\r\n                    \"BuyerAccountingReference\": null,\r\n                    \"OriginatorPartyName\": null,\r\n                    \"OriginatorPartyIdentification\": null,\r\n                    \"PurchaseOrderItemReferenceNo\": null,\r\n                    \"PurchaseOrderReferenceID\": null,\r\n                    \"DocumentItemReferenceNo\": null,\r\n                    \"PackagingUnitCode\": null,\r\n                    \"Package\": null,\r\n                    \"Barcode\": null,\r\n                    \"ItemExpiryDate\": null,\r\n                    \"AdditionalTaxRate1\": null,\r\n                    \"StandardIdentificationId\": null,\r\n                    \"AdditionalUnitCode\": null,\r\n                    \"TurnoverCode\": null,\r\n                    \"ClassificationCodeDetails\": null,\r\n                    \"AdditionalPropertyDetails\": null,\r\n                    \"DeliveryLocation\": null,\r\n                    \"Notes\": \"Laptop accessories\",\r\n                    \"Category\": null,\r\n                    \"Batch\": null,\r\n                    \"BatchSerialID\": null,\r\n                    \"Expiry\": null,\r\n                    \"InsuranceCompanyCode\": null,\r\n                    \"InsuranceCompanyName\": null,\r\n                    \"InsuranceRate\": null,\r\n                    \"InsuranceAmount\": null,\r\n                    \"TaxType\": null,\r\n                    \"IsService\": \"N\",\r\n                    \"PartialDeliveryIndicator\": null,\r\n                    \"TaxCalculationMeasure\": null,\r\n                    \"TaxCalculationMeasureUnitCode\": null,\r\n                    \"SupplierItemName\": null,\r\n                    \"SupplierItemCode\": null,\r\n                    \"SupplierItemClassCode\": null,\r\n                    \"TaxAmountInAccCurrency\": \"5\",\r\n                    \"LineAmountInAccCurrency\": null,\r\n                    \"SupplyAmount\": null,\r\n                    \"PrepaidAmountDetails\": null,\r\n                    \"DespatchItemReferenceNo\": null,\r\n                    \"DespatchReferenceId\": null,\r\n                    \"DocumentItemRefTypeCode\": null,\r\n                    \"CustomItem1\": \"Custom item value 1\",\r\n                    \"CustomItem2\": \"Custom item value 2\",\r\n                    \"CustomItem3\": \"Custom item value 3\",\r\n                    \"CustomItem4\": \"Custom item value 4\",\r\n                    \"CustomItem5\": \"Custom item value 5\",\r\n                    \"CustomItem6\": \"Custom item value 6\",\r\n                    \"CustomItem7\": \"Custom item value 7\",\r\n                    \"CustomItem8\": \"Custom item value 8\",\r\n                    \"CustomItem9\": \"Custom item value 9\",\r\n                    \"CustomItem10\": \"Custom item value 10\",\r\n                    \"MaxBackorderQuantity\": null,\r\n                    \"OrderLineReference\": null,\r\n                    \"SubItemSerialNumber\": null,\r\n                    \"SubItemName\": null,\r\n                    \"SubItemSellerIdentification\": null,\r\n                    \"SubItemStandardIdentification\": null,\r\n                    \"SubItemClassCodeDetails\": null,\r\n                    \"SubItemTaxCategoryCode\": null,\r\n                    \"LineStatusCode\": null,\r\n                    \"SubItemTaxRate\": null,\r\n                    \"SubItemAddPropertyDetails\": null,\r\n                    \"DifferenceValue\": null,\r\n                    \"TaxableFees\": null,\r\n                    \"InvoicedQuantityWeightUnitCode\": null,\r\n                    \"InvoicedWeightQuantity\": null,\r\n                    \"ItemCurrencyCode\": null,\r\n                    \"UnitPriceInAccCurrency\": null,\r\n                    \"ItemExchangeRate\": null,\r\n                    \"TaxDetails\": null,\r\n                    \"ItemPrepaymentVatDetails\": null,\r\n                    \"ItemPrepaymentDetails\": null,\r\n                    \"ItemRoundingAmount\": 105.0\r\n                }\r\n            ],\r\n            \"Errors\": null\r\n        }\r\n    ]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://staging-uae-api-cygnettaxglobaleinvoicing.cygnet.one/enriched/v0.1/document/save",
+              "protocol": "https",
+              "host": [
+                "staging-uae-api-cygnettaxglobaleinvoicing",
+                "cygnet",
+                "one"
+              ],
+              "path": [
+                "enriched",
+                "v0.1",
+                "document",
+                "save"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Save Document Status",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "auth-token",
+                "value": "be9657f8aa66b8a9fc40c1d3c12a719f61f4d2e70aa5ee36edd30285db54c968",
+                "type": "text"
+              },
+              {
+                "key": "content-type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://staging-uae-api-cygnettaxglobaleinvoicing.cygnet.one/enriched/v0.1/reference/status?referenceId={{referenceId}}",
+              "protocol": "https",
+              "host": [
+                "staging-uae-api-cygnettaxglobaleinvoicing",
+                "cygnet",
+                "one"
+              ],
+              "path": [
+                "enriched",
+                "v0.1",
+                "reference",
+                "status"
+              ],
+              "query": [
+                {
+                  "key": "referenceId",
+                  "value": "{{referenceId}}"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

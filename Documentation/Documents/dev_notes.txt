@@ -1,0 +1,45 @@
+
+Questions to ask:
+
+- Ask the vendor to provide the credentials data for connecting to the authentication api. Ask information for the following fields:
+	* client-id
+	* client-secret
+- Ask the vendor what the following statement means: By default, none of Global E-Invoicing environment will do callback unless callback-url is whitelisted in Global E-Invoicing environment. 
+- What is the URL address of Global E-Invoicing System. 
+- Ask for the screenshots in Postman of each API calls with header and parameter values as well as the response result
+
+
+Technical Notes:
+
+- API URL Details:
+	Staging - https://staging-bh-api-cygnettaxglobaleinvoicing.cygnet.one
+	Production - https://bh-api-cygnettaxglobaleinvoicing.cygnet.one
+
+- Data can be pushed back back from Cygnet if callcack url is provided in the api call
+
+- Vital APIs - Authentication API
+	* URL: https://staging-bh-api-cygnettaxglobaleinvoicing.cygnet.one/enriched/v0.1/authenticate/token
+	* Content-Type: application/json
+	* Method: POST
+	* Request Header:
+		client-id: Client ID will be provided by the service provider
+		client-secret: Client Secret will be provided by the service provider
+		content-type: application/json
+	* Request Payload
+		ForceRefresh: Set to true if client needs to refresh the token 10 minutes before expiry
+		UserName: Username of authenticated user
+		Password: Password of authenticated user
+		
+
+
+- Documents APIs - Save Documents
+	* URL: https://staging-bh-api-cygnettaxglobaleinvoicing.cygnet.one/enriched/v0.1/document/save
+	* Content-Type: application/json
+	* Method: POST
+	* Request Header:
+		callback-url: Endpoint URL provided by the client to receive real-time e-Invoice status updates from service provider
+		auth-token: Valid Auth Token generated using Authentication API
+		content-type: application/json
+	
+
+
