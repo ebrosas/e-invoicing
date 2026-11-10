@@ -1,8 +1,28 @@
-node_modules/
-build/
-dist/
+# Visual Studio
+.vs/
+**/.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# .NET build output
+[Bb]in/
+[Oo]bj/
+
+# Compiled files
+*.dll
+*.exe
+*.pdb
+
+# Test results
+TestResults/
 coverage/
-.DS_Store
+
+# Logs
 *.log
-.env*
-!.env.example
+logs/
+
+# Operating system
+.DS_Store
+Thumbs.db
